@@ -1,0 +1,2 @@
+class BgPicture < ApplicationRecord
+end
