@@ -8,9 +8,16 @@
 
 <p>
   <%= f.label :content %>
-  <% f.text_field :content %>
+  <%= f.text_area :content %>
 </p>
 
+<p>
+  <%= f.label 'Set this post to private?' %>
+  <%= f.check_box :private, {checked: true}, 'Yes', 'No' %>
+</p>
 
+<p>
+  <%= f.submit %>
+</p>
 
 <% end %>
