@@ -1,0 +1,2 @@
+class BgPicturesController < ApplicationController
+end
