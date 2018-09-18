@@ -1,1 +1,15 @@
-<h1>Welcome to Capsule!</h1>
+<h1>Welcome to your capsule </h1>
+<div class="date_range">
+    <%= form_tag(entries_path, method: "get") do %>
+      <%= date_field(:from_date, :date) %>
+      <%= submit_tag("Pick Date") %>
+    <% end %>
+ </div>
+     <% @entries.each do |entry| %>
+  <div>
+      <p><%= entry.title %></p>
+      <p><%= entry.content %></p>
+      <p><%= entry.created_at.strftime("%b %d %Y") %></p>
+ </div>
+   <% end %>
+</div>
