@@ -1,0 +1,23 @@
+<h1>Replace with lock icon</h1>
+
+<section class="form-wrapper wrapper">
+  <%= form_for :session, url: sessions_path, html: {class: 'form'} do |f| %>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.email_field :email, placeholder: 'Enter Email Address' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password, placeholder: 'Enter Password' %>
+    </div>
+
+    <div class="field">
+      <%= f.submit 'Log In', class: 'btn-default' %>
+    </div>
+  <% end %>
+
+  <p class="call-to-action">
+    Don't have an account? <%= link_to 'Sign up!', new_user_path %>
+  </p>
+</section>

@@ -1,0 +1,25 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html, body {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: grid;
+  font-family: $font-normal;
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin: 0 auto;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

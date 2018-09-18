@@ -1,4 +1,5 @@
 class EntriesController < ApplicationController
+  before_action :require_login
 
   def index
     @entries = Entry.last_five_entry

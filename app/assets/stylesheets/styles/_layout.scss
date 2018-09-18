@@ -1,0 +1,82 @@
+.btn-default {
+  display: inline-block;
+  border: none;
+  padding: 1rem 2rem;
+  margin: 0;
+  text-decoration: none;
+  background: $blue;
+  color: #fff;
+  font-family: $font-normal;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out,
+              transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 2px;
+}
+
+.btn-default:hover,
+.btn-default:focus {
+  background: lighten($blue, 40%);
+}
+
+.btn-default:focus {
+  outline: none;
+}
+
+.btn-default:active {
+  transform: scale(0.99);
+}
+
+.logo-wrapper {
+  place-self: center;
+  .logo {
+    border: 1px solid $black;
+    height: 100px;
+  }
+}
+
+.error-block {
+  color: darken($blue, 20%);
+  background: $light-gray;
+  position: absolute;
+  width: 100%;
+  top: 0;
+
+  .notice {
+    padding: 1rem;
+  }
+
+  .alert {
+    padding: 1rem;
+  }
+}
+
+.error-explanation {
+  color: $red;
+  margin: 2rem auto;
+
+  h3 {
+    color: darken($red, 20%);
+    background: lighten($red, 40%);
+    padding: 1rem;
+    border-radius: 2px;
+  }
+
+  ul {
+    margin: 1rem 2rem;
+  }
+
+  li {
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+  }
+}
+
+.field_with_errors {
+  input {
+    border: 1px solid $red;
+  }
+}

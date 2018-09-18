@@ -1,0 +1,7 @@
+<section class="user-info">
+  <% if current_user == @user %>
+    Hello <%= @user.name %><br>
+  <% else %>
+    <h1>Access Denied</h1>
+  <% end %>
+</section>

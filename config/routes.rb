@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-
   resources :entries
+  resources :users, only: [:new, :create]
+  resources :sessions, only: [:new, :create, :destroy]
+  get 'users' => 'users#new'
+  get 'sessions' => 'sessions#new'
 
-
-#this makes the root of the whole app the entry's index page, showing all the entries
-  root "entries#index"
-
+  root 'sessions#new'
 end

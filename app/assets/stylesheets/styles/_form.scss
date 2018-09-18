@@ -1,0 +1,34 @@
+.form-wrapper {
+  padding: 0 1rem;
+
+  .form {
+    .field {
+      width: 100%;
+      margin: 2em 0;
+      position: relative;
+
+      label {
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        display: block;
+        font-size: 1.6rem;
+      }
+
+      input {
+        width: 100%;
+        height: 3.6rem;
+      }
+
+      .btn-default {
+        width: 100%;
+        height: 3.6rem;
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  .call-to-action {
+    text-align: center;
+    margin: 2rem auto;
+  }
+}
