@@ -1,6 +1,6 @@
-<section>
+<section class="user-info">
   <% if current_user == @user %>
-    Hello <%= @user.name %>
+    Hello <%= @user.name %><br>
   <% else %>
     <h1><%= @user.name %>'s Profile</h1>
   <% end %>
