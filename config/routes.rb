@@ -1,13 +1,7 @@
 Rails.application.routes.draw do
-
   resources :entries
-  resources :users, only: %i(new create show)
-  resource :sessions, only: %i(new create destroy)
-
-  root "entries#index"
-
-  get 'login' => 'sessions#new', :as => :login
-  delete 'logout' => 'sessions#destroy', :as => :logout
-
-
+  resources :users, only: [:new, :create]
+  resources :sessions, only: [:new, :create, :destroy]
+  
+  root 'sessions#new'
 end

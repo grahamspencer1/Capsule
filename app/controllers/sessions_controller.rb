@@ -4,19 +4,18 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect_to entries_url, notice: "You have logged in."
-    else
-      flash[:notice] = "Your username and/or password is incorrect."
-      render "new"
-    end
+    @user = User.find_by(email: params[:session][:email])
 
+    if @user && @user.authenticate(params[:session][:password])
+      session[:user_id] = @user.id
+      redirect_to entries_url
+    else
+      flash.now[:alert] = "Login failed, name and/or password are incorrect."
+      render :new
+    end
   end
 
   def destroy
-    # User.find(session[:user_id]).destroy
     session[:user_id] = nil
     redirect_to root_url, notice: 'You have logged out successfully.'
   end

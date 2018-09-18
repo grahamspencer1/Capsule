@@ -1,35 +1,42 @@
-<!-- Shows errors if something goes wrong during log-in -->
-<% if @user.errors.any? %>
-<h2>Warning: <%=pluralize(@user.errors.count, "error") %></h2>
-  <ul>
-<% @user.errors.full_messages.each do |message| %>
-  <li> <%= message %></li>
+<section class="form-wrapper wrapper">
+  <%= form_for @user, html: {class: 'form'} do |f| %>
+    <% if @user.errors.any? %>
+      <div class="error-explanation">
+          <h2>Warning: <%= pluralize(@user.errors.count, "error") %>.</h2>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li>* <%= msg %>.</li>
+            <% end %>
+          </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name, placeholder: 'Enter Display Name' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email, placeholder: 'Enter Email Address' %>
+    </div>
+
+    <div class="field">
+       <%= f.label :password %>
+       <%= f.password_field :password, placeholder: 'Enter Password' %>
+    </div>
+
+    <div class="field">
+       <%= f.label :password_confirmation %>
+       <%= f.password_field :password_confirmation, placeholder: 'Re-Enter Password' %>
+    </div>
+
+    <div class="field">
+      <%= f.submit 'Create Account', class: 'btn-default' %>
+    </div>
   <% end %>
-  </ul>
-<% end %>
 
-<%= form_for @user do |f| %>
-  <div class="field">
-     <%= f.label :name %><br />
-     <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-     <%= f.label :email %><br />
-     <%= f.text_field :email %>
-  </div>
-
-  <div class="field">
-     <%= f.label :password %><br />
-     <%= f.password_field :password %>
-  </div>
-  <div class="field">
-     <%= f.label :password_confirmation %><br />
-     <%= f.password_field :password_confirmation %>
-  </div>
-
-  <div class="field">
-     <%= f.submit %>
-  </div>
-
-<% end %>
+  <p class="call-to-action">
+    Already have an account? <%= link_to 'Log in!', new_session_path %>
+  </p>
+</section>

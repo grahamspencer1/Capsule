@@ -5,26 +5,47 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
 
-  <%= flash[:notice] %>
+  <header>
+    <div class="logo-wrapper">
+      <%= link_to image_tag('capsule-logo.svg', class: 'logo'), root_path %>
+    </div>
+
+    <p>
+     <% if current_user %>
+       Signed in as <%= current_user.name %>
+       <%= link_to 'Log Out', session_path(current_user), method: :delete %>
+     <% else %>
+       <!-- <%#= link_to "Log in", new_session_path %> or <%#= link_to "Sign up", new_user_path %> -->
+     <% end %>
+    </p>
+  </header>
+
+  <main>
+    <section class="error-block">
+      <% if flash[:notice] %>
+        <p class="notice">
+          <%= flash[:notice] %>
+        </p>
+      <% end %>
+      <% if flash[:alert] %>
+        <p class="alert">
+          <%= flash[:alert] %>
+        </p>
+      <% end %>
+    </section>
 
     <%= yield %>
+  </main>
 
-  <p>
-   <% if current_user %>
-     Signed in as <%= current_user.email %>
-     <%= link_to "Log out", sessions_path("current"), :method => :delete %>
-   <% else %>
-     <%= link_to "Log in", new_sessions_path %> or <%= link_to "Sign up", new_user_path %>
-   <% end %>
-  </p>
+  <footer>
+    <p>&copy; Bitmaker 2018 | <a href="https://github.com/grahamspencer1/Capsule">See Repo Here</a></p>
+  </footer>
 
   </body>
-
-
 </html>
