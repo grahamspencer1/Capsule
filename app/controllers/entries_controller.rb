@@ -2,11 +2,16 @@ class EntriesController < ApplicationController
   before_action :require_login
 
   def index
-    @entries = Entry.all
+    @entries = Entry.last_five_entry
+    if params[:from_date]
+      date = params[:from_date][:date]
+      # raise
+      @entries = Entry.entry_search(date)
+    end
   end
 
   def show
-    @entry = Entry.find(params[:id])
+     @entry = Entry.find(params[:id])
   end
 
   def create
