@@ -1,8 +1,5 @@
-require 'bcrypt'
-
 class User < ApplicationRecord
   has_secure_password
-
   has_many :entries
 
   validates :password, length: { minimum: 8 }, on: :create
