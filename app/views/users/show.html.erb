@@ -1,0 +1,9 @@
+<section>
+  <% if current_user == @user %>
+    Hello <%= @user.full_name %>
+  <% else %>
+    <h1><%= @user.full_name %>'s Profile</h1>
+  <% end %>
+</section>
+
+<h1>Hello World</h1>
