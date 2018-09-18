@@ -7,9 +7,9 @@ class UserSessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to entries_url, notice: "Logged in!"
+      redirect_to entries_url, notice: "You have logged in."
     else
-      flash[:notice] = "Username and/or password incorrect!"
+      flash[:notice] = "Your username and/or password is incorrect."
       render "new"
     end
 
@@ -17,7 +17,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, notice: 'Logged out!'
+    redirect_to root_url, notice: 'You have logged out successfully.'
   end
 
 end
