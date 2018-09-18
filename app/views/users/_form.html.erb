@@ -1,0 +1,35 @@
+<!-- Shows errors if something goes wrong during log-in -->
+<% if @user.errors.any? %>
+<h2>Warning: <%=pluralize(@user.errors.count, "error") %></h2>
+  <ul>
+<% @user.errors.full_messages.each do |message| %>
+  <li> <%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @user do |f| %>
+  <div class="field">
+     <%= f.label :name %><br />
+     <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+     <%= f.label :email %><br />
+     <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+     <%= f.label :password %><br />
+     <%= f.password_field :password %>
+  </div>
+  <div class="field">
+     <%= f.label :password_confirmation %><br />
+     <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div class="field">
+     <%= f.submit %>
+  </div>
+
+<% end %>

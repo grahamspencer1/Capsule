@@ -1,1 +1,7 @@
 <h1>Welcome to Capsule!</h1>
+
+<p>
+ <% if current_user %>
+   <%= current_user.entries %>
+ <% end %>
+</p>
