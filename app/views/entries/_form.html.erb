@@ -1,12 +1,12 @@
 <%= form_for @entry do |f| %>
 
 <p>
-  <!-- <%= f.label :title %> -->
-  <%= f.text_field :title, placeholder: 'Title'%>
+  <%= f.label :title %><br>
+  <%= f.text_field :title, size: "40x10", placeholder: 'Title'%>
 </p>
 <br>
 <p>
-  <!-- <%= f.label :content %> -->
+  <%= f.label :content %><br>
   <%= f.text_area :content, size: "40x20", placeholder: "Write an entry here" %>
 </p>
 
@@ -14,6 +14,12 @@
   <%= f.label 'Set this post to private?' %>
   <%= f.check_box :private, {checked: true}, 'Yes', 'No' %>
 </p>
+<br>
+<p>
+  <%= f.label 'Auto-Mood' %>
+  <%= f.check_box :auto-mood, 
+</p>
+
 
 <p>
   <%= f.submit %>

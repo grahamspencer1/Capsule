@@ -19,11 +19,19 @@ class EntriesController < ApplicationController
     @entry.title = params[:entry][:title]
     @entry.content = params[:entry][:content]
 
-    # if params[:private] == "0"
-    #   @title.private = false
-    # end
-    #
-    # @entry.bg_picture_id
+    if params[:private] == false
+      @title.private = false
+    end
+
+    @entry.bg_picture_id = 1
+
+    if @entry.save
+      flash[:alert] = "Success!"
+      redirect_to "/entries"
+    else
+      flash[:alert] = "Failure!"
+      render :new
+    end
   end
 
   def new
