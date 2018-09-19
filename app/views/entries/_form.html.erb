@@ -1,21 +1,25 @@
-
 <%= form_for @entry do |f| %>
 
 <p>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.label :title %><br>
+  <%= f.text_field :title, size: "40x10", placeholder: 'Title'%>
 </p>
-
+<br>
 <p>
-  <%= f.label :content %>
-  <%= f.text_area :content %>
+  <%= f.label :content %><br>
+  <%= f.text_area :content, size: "40x20", placeholder: "Write an entry here" %>
 </p>
 
 <p>
   <%= f.label 'Set this post to private?' %>
   <%= f.check_box :private, {checked: true}, 'Yes', 'No' %>
 </p>
-
+<br>
+<p>
+  <%= f.label 'Auto-Mood' %>
+  <%= f.check_box :auto_mood, {checked: true}, 'Yes', 'No' %>
+</p>
+<br><br>
 <p>
   <%= f.submit %>
 </p>
