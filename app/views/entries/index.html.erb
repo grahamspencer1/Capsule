@@ -1,4 +1,8 @@
 <section class="capsule-main wrapper">
+  <br><br>
+  <%= link_to 'Create New Entry', new_entry_path %>
+  <br><br><br>
+
   <div class="date-range">
       <h1>View Entries</h1>
       <%= form_tag(entries_path, method: "get") do %>
@@ -7,18 +11,14 @@
       <% end %>
   </div>
 
-  <br><br>
-  <%= link_to 'Create New Entry', new_entry_path %>
-  <br><br><br>
-
+  <section class="entry-wrapper">
     <% @entries.each do |entry| %>
       <%= link_to entry_path(entry) do %>
-        <div class="entry-wrapper">
+        <div class="entry-container">
             <h2 class="entry-title"><%= entry.title %></h2>
-            <p class="entry-content"><%= entry.content %></p>
-            <time class="entry-date"><%= entry.created_at.strftime("%m %d %Y") %></time>
-            <br><br>
+            <time class="entry-date"><%= entry.created_at.strftime("%m-%d-%Y") %></time>
         </div>
       <% end %>
     <% end %>
+  </section>
 </section>
