@@ -1,0 +1,37 @@
+.entry-wrapper {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+
+  .entry {
+    &-container {
+      background: darken($white, 5%);
+      width: 150px;
+      height: 200px;
+      display: inline-grid;
+      font-size: 1.4em;
+
+      &:hover {
+        background: lighten($brand-gray, 50%);
+      }
+    }
+
+    &-title {
+      font-family: $font-header;
+    }
+
+    &-content {
+
+    }
+
+    &-date {
+      align-self: end;
+      font-family: $font-normal;
+    }
+
+    &-title, &-date {
+      font-weight: 300;
+      margin: 1rem auto;
+    }
+  }
+}
