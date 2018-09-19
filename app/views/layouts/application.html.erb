@@ -19,7 +19,7 @@
 
     <p>
      <% if current_user %>
-       Signed in as <%= current_user.name %>
+       Signed in as <%= current_user.name %> |
        <%= link_to 'Log Out', session_path(current_user), method: :delete %>
      <% else %>
        <!-- <%#= link_to "Log in", new_session_path %> or <%#= link_to "Sign up", new_user_path %> -->

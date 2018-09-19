@@ -6,6 +6,8 @@ class CreateEntries < ActiveRecord::Migration[5.2]
       t.boolean :private, default: true
       t.integer :bg_picture_id
       t.integer :user_id
+      t.string :mood
+      t.boolean :auto_mood 
 
       t.timestamps
     end
