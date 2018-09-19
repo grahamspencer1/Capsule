@@ -13,10 +13,12 @@
 
   <section class="entry-wrapper">
     <% @entries.each do |entry| %>
-      <div class="entry-container">
-          <h2 class="entry-title"><%= entry.title %></h2>
-          <time class="entry-date"><%= entry.created_at.strftime("%m %d %Y") %></time>
-      </div>
+      <%= link_to entry_path(entry) do %>
+        <div class="entry-container">
+            <h2 class="entry-title"><%= entry.title %></h2>
+            <time class="entry-date"><%= entry.created_at.strftime("%m %d %Y") %></time>
+        </div>
+      <% end %>
     <% end %>
   </section>
 </section>
