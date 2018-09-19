@@ -5,11 +5,12 @@
       <%= submit_tag("Pick Date") %>
     <% end %>
  </div>
-     <% @entries.each do |entry| %>
-  <div>
-      <p><%= entry.title %></p>
-      <p><%= entry.content %></p>
-      <p><%= entry.created_at.strftime("%b %d %Y") %></p>
- </div>
-   <% end %>
-</div>
+  <% @entries.each do |entry| %>
+      <%= link_to entry_path(entry) do %>
+      <div>
+        <%="#{entry.title}" %>
+        <%="#{entry.content}" %>
+        <%="#{entry.created_at.strftime("%b %d %Y")}" %>
+      </div>
+    <% end %></br> </br></br>
+  <% end %>
