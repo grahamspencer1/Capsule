@@ -1,16 +1,23 @@
-<h1>Welcome to your capsule </h1>
-<div class="date_range">
-    <%= form_tag(entries_path, method: "get") do %>
-      <%= date_field(:from_date, :date) %>
-      <%= submit_tag("Pick Date") %>
-    <% end %>
- </div>
-  <% @entries.each do |entry| %>
+<section class="capsule-main wrapper">
+  <div class="date-range">
+      <h1>View Entries</h1>
+      <%= form_tag(entries_path, method: "get") do %>
+        <%= date_field(:from_date, :date, :value => Time.now.strftime('%Y-%m-%d')) %>
+        <%= submit_tag("Pick Date", class: "btn-default") %>
+      <% end %>
+  </div>
+
+  <br><br>
+  <%= link_to 'Create New Entry', new_entry_path %>
+  <br><br><br>
+
+    <% @entries.each do |entry| %>
       <%= link_to entry_path(entry) do %>
-      <div>
-        <%="#{entry.title}" %>
-        <%="#{entry.content}" %>
-        <%="#{entry.created_at.strftime("%b %d %Y")}" %>
-      </div>
-    <% end %></br> </br></br>
-  <% end %>
+        <div class="entry-wrapper">
+            <h2 class="entry-title"><%= entry.title %></h2>
+            <p class="entry-content"><%= entry.content %></p>
+            <time class="entry-date"><%= entry.created_at.strftime("%m %d %Y") %></time>
+        </div>
+      <% end %>
+    <% end %>
+</section>

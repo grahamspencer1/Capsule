@@ -32,3 +32,48 @@
     margin: 2rem auto;
   }
 }
+
+.date-range {
+  form {
+    margin: 1.5rem auto;
+    display: block;
+    text-align: center;
+
+    .btn-default {
+      font-size: 1.8rem;
+      padding: 1rem;
+      display: inline-block;
+    }
+
+    input[type="date"] {
+      -webkit-appearance: none;
+      color: lighten($black, 20%);
+      font-family: $font-header;
+      font-weight: 300;
+      font-size: 1.8rem;
+      border: 1px solid $light-gray;
+      padding: 5px;
+      display: inline-block !important;
+      visibility: visible !important;
+      margin-right: 1rem;
+      background: $light-gray url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat;
+
+      &::-webkit-clear-button, &::-webkit-inner-spin-button {
+        display: none;
+      }
+
+      &::-webkit-calendar-picker-indicator {
+        color: rgba(0, 0, 0, 0);
+        opacity: 1;
+
+        &:hover, &:focus {
+        	background: none;
+        }
+      }
+    }
+
+    .btn-default, input[type="date"] {
+      vertical-align: middle;
+    }
+  }
+}
