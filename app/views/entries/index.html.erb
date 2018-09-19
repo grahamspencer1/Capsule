@@ -7,6 +7,10 @@
       <% end %>
   </div>
 
+  <br><br>
+  <%= link_to 'Create New Entry', new_entry_path %>
+  <br><br><br>
+
     <% @entries.each do |entry| %>
       <div class="entry-wrapper">
           <h2 class="entry-title"><%= entry.title %></h2>
