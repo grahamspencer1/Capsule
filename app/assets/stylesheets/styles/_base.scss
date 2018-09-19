@@ -60,3 +60,12 @@ h1 {
   text-transform: uppercase;
   font-weight: 300;
 }
+
+a, a:visited {
+  text-decoration: none;
+  color: $brand;
+}
+
+a:hover, a:focus, a:active {
+  color: darken($brand, 10%);
+}

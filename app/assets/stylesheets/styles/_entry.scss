@@ -5,11 +5,15 @@
 
   .entry {
     &-container {
-      background: $brand-gray;
+      background: darken($white, 5%);
       width: 150px;
       height: 200px;
       display: inline-grid;
       font-size: 1.4em;
+
+      &:hover {
+        background: lighten($brand-gray, 50%);
+      }
     }
 
     &-title {
