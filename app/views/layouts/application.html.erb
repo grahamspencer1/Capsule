@@ -8,45 +8,49 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <link href="https://fonts.googleapis.com/css?family=Oswald:300,400|Roboto+Condensed:300,400" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
   </head>
 
   <body>
+    <header>
+      <div class="logo-wrapper">
+        <% if !current_user %>
+          <%= link_to image_tag('capsule-logo.svg', class: 'logo'), root_path %>
+        <% else %>
+          <%= link_to image_tag('capsule-logo.svg', class: 'logo'), entries_path %>
+        <% end %>
+      </div>
 
-  <header>
-    <div class="logo-wrapper">
-      <%= link_to image_tag('capsule-logo.svg', class: 'logo'), root_path %>
-    </div>
+      <div class="current-user">
+       <% if current_user %>
+         Signed in as <%= current_user.name %>,
+         <%= link_to 'Log Out', session_path(current_user), method: :delete %>
+       <% else %>
+         <!-- <%#= link_to "Log in", new_session_path %> or <%#= link_to "Sign up", new_user_path %> -->
+       <% end %>
+      </div>
+    </header>
 
-    <p>
-     <% if current_user %>
-       Signed in as <%= current_user.name %> |
-       <%= link_to 'Log Out', session_path(current_user), method: :delete %>
-     <% else %>
-       <!-- <%#= link_to "Log in", new_session_path %> or <%#= link_to "Sign up", new_user_path %> -->
-     <% end %>
-    </p>
-  </header>
+    <main>
+      <section class="error-block">
+        <% if flash[:notice] %>
+          <p class="notice">
+            <%= flash[:notice] %>
+          </p>
+        <% end %>
+        <% if flash[:alert] %>
+          <p class="alert">
+            <%= flash[:alert] %>
+          </p>
+        <% end %>
+      </section>
 
-  <main>
-    <section class="error-block">
-      <% if flash[:notice] %>
-        <p class="notice">
-          <%= flash[:notice] %>
-        </p>
-      <% end %>
-      <% if flash[:alert] %>
-        <p class="alert">
-          <%= flash[:alert] %>
-        </p>
-      <% end %>
-    </section>
+      <%= yield %>
+    </main>
 
-    <%= yield %>
-  </main>
-
-  <footer>
-    <p>&copy; Bitmaker 2018 | <a href="https://github.com/grahamspencer1/Capsule">See Repo Here</a></p>
-  </footer>
+    <footer>
+      <p>&copy; Bitmaker 2018 | <a href="https://github.com/grahamspencer1/Capsule">See Repo Here</a></p>
+    </footer>
 
   </body>
 </html>
