@@ -16,7 +16,9 @@
     <div class="logo-wrapper">
       <%= link_to image_tag('capsule-logo.svg', class: 'logo'), root_path %>
     </div>
+  </header>
 
+  <main>
     <p>
      <% if current_user %>
        Signed in as <%= current_user.name %>
@@ -25,9 +27,7 @@
        <!-- <%#= link_to "Log in", new_session_path %> or <%#= link_to "Sign up", new_user_path %> -->
      <% end %>
     </p>
-  </header>
 
-  <main>
     <section class="error-block">
       <% if flash[:notice] %>
         <p class="notice">

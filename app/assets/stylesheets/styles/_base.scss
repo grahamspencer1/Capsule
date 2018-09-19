@@ -23,3 +23,24 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+header {
+  display: inline-grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  height: 100px;
+}
+
+main {
+  .wrapper {
+    margin: 2rem 0 0;
+    // display: inline-grid;
+    // min-height: 100%;
+    // grid-template-rows: auto 1fr auto;
+    // grid-template-columns: 100%;
+  }
+}
+
+footer {
+  margin: 2rem auto;
+  place-self: center end;
+}

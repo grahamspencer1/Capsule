@@ -1,7 +1,6 @@
 .btn-default {
   display: inline-block;
   border: none;
-  padding: 1rem 2rem;
   margin: 0;
   text-decoration: none;
   background: $blue;
@@ -32,9 +31,16 @@
 
 .logo-wrapper {
   place-self: center;
+  grid-column-start: 2;
   .logo {
-    border: 1px solid $black;
     height: 100px;
+  }
+}
+
+.splash-wrapper {
+  .splash {
+    margin: 0 auto;
+    display: block;
   }
 }
 
