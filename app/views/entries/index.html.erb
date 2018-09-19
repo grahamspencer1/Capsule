@@ -12,11 +12,12 @@
   <br><br><br>
 
     <% @entries.each do |entry| %>
-      <div class="entry-wrapper">
-          <h2 class="entry-title"><%= entry.title %></h2>
-          <p class="entry-content"><%= entry.content %></p>
-          <time class="entry-date"><%= entry.created_at.strftime("%m %d %Y") %></time>
-      </div>
+      <%= link_to entry_path(entry) do %>
+        <div class="entry-wrapper">
+            <h2 class="entry-title"><%= entry.title %></h2>
+            <p class="entry-content"><%= entry.content %></p>
+            <time class="entry-date"><%= entry.created_at.strftime("%m %d %Y") %></time>
+        </div>
+      <% end %>
     <% end %>
-  </div>
 </section>
