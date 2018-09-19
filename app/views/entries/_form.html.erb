@@ -1,14 +1,13 @@
-
 <%= form_for @entry do |f| %>
 
 <p>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+  <!-- <%= f.label :title %> -->
+  <%= f.text_field :title, placeholder: 'Title'%>
 </p>
-
+<br>
 <p>
-  <%= f.label :content %>
-  <%= f.text_area :content %>
+  <!-- <%= f.label :content %> -->
+  <%= f.text_area :content, size: "40x20", placeholder: "Write an entry here" %>
 </p>
 
 <p>
