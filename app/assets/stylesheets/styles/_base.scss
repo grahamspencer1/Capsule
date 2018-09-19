@@ -27,6 +27,7 @@ img {
 header {
   display: inline-grid;
   grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 2fr;
   height: 100px;
 }
 
@@ -43,4 +44,17 @@ main {
 footer {
   margin: 2rem auto;
   place-self: center end;
+}
+
+h1, h2 {
+  font-family: $font-header;
+  text-align: center;
+  margin: 0.5rem;
+}
+
+h1 {
+  font-size: 3.2rem;
+  line-height: 3.4rem;
+  text-transform: uppercase;
+  font-weight: 300;
 }

@@ -3,7 +3,7 @@
   border: none;
   margin: 0;
   text-decoration: none;
-  background: $blue;
+  background: $brand;
   color: #fff;
   font-family: $font-normal;
   font-size: 1rem;
@@ -18,7 +18,7 @@
 
 .btn-default:hover,
 .btn-default:focus {
-  background: lighten($blue, 40%);
+  background: lighten($brand, 10%);
 }
 
 .btn-default:focus {
@@ -33,7 +33,8 @@
   place-self: center;
   grid-column-start: 2;
   .logo {
-    height: 100px;
+    margin: 0 auto;
+    display: block;
   }
 }
 
@@ -44,8 +45,14 @@
   }
 }
 
+.current-user {
+  grid-column: 1 / span 3;
+  grid-row-start: 2;
+  text-align: center;
+}
+
 .error-block {
-  color: darken($blue, 20%);
+  color: darken($brand-gray, 20%);
   background: $light-gray;
   position: absolute;
   width: 100%;
