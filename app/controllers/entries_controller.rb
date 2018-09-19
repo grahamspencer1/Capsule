@@ -42,11 +42,13 @@ class EntriesController < ApplicationController
   end
 
   def destroy
-
+    @entry = Entry.find(params[:id])
+    @entry.destroy
+    redirect_to "/entries"
   end
 
   def update
-
+    @entry = Entry.find(params[:id])
   end
 
   def edit
