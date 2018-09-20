@@ -1,17 +1,17 @@
-<div class="single_entry_container">
-  <div class="currentEntry"><h1><%= @entry.title %> </h1></div>
-  <div class="currentEntry"><h1><%= @entry.content %> </h1></div>
-  <div class="currentEntry"><h1><%= @entry.created_at.strftime("%b %d %Y")%> </h1></div>
+<button class="reward" onclick="goEntry(-1)">&#10094;</button>
+<button class="forward" onclick="goEntry(1)">&#10095;</button>
 
-  <br>
+<section class="single-entry-container current-entry">
   <p>
     <%= link_to("Edit", "/entries/#{@entry.id}/edit") %>
     |
     <%= link_to("Delete", "/entries/#{@entry.id}", method: :delete, data: {:confirm => "Are you sure you want to delete this entry?"}) %>
   </p>
-  <br><br>
 
-  <button class="reward" onclick="goEntry(-1)">&#10094;</button>
-  <button class="forward" onclick="goEntry(1)">&#10095;</button>
-
-</div>
+  <div class="entry-title-wrapper">
+    <h1><%= @entry.title %></h1>
+    <h3><%= @entry.created_at.strftime("%b/%d/%Y") %></h3>
+  </div>
+  
+  <p><%= @entry.content %></p>
+</section>
