@@ -8,13 +8,14 @@ class EntryTest < ActiveSupport::TestCase
     @entry = Entry.create(title: "Test", content: "Lorem Ipsum", private: true, bg_picture_id: @bg_picture.id, user_id: @user.id, created_at: false, updated_at: false, mood: "happy", auto_mood: false)
   end
 
-  def test_user_can_save_entry
+  #Test works
+  def test_entry_is_valid
     testEntry = @entry
-    testEntry.save
     assert testEntry.valid?
   end
 
-  def user_cannot_save_entry_with_empty_fields
+  
+  def test_user_cannot_save_entry_with_empty_fields
     entry = Entry.create(title: "")
     refute entry.valid?
   end
