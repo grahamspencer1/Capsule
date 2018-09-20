@@ -81,6 +81,4 @@ class EntriesController < ApplicationController
   def edit
     @entry = Entry.find(params[:id])
   end
-
-
 end

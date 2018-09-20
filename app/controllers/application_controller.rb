@@ -15,4 +15,11 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
   end
+
+  def require_admin
+    unless current_user.admin
+      flash[:notice] = "Access Denied. You cannot view this page."
+      redirect_to entries_url
+    end
+  end
 end
