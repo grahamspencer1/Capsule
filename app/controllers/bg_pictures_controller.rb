@@ -1,6 +1,6 @@
 class BgPicturesController < ApplicationController
   before_action :require_login
-  before_action :require_admin
+  before_action :require_admin, only: [:edit, :update, :destroy]
 
   def index
     @pictures = BgPicture.all
