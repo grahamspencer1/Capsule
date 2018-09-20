@@ -4,7 +4,7 @@ class EntryTest < ActiveSupport::TestCase
 
   def setup
     @user = User.create(name: "Test", email: "test@test.com", password: "testtest", password_confirmation: "testtest")
-    @bg_picture = BgPicture.create(mood: 'happy')
+    @bg_picture = BgPictest_user_can_save_entryture.create(mood: 'happy')
   end
 
   def test_user_can_save_entry
