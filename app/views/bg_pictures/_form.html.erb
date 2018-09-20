@@ -1,0 +1,17 @@
+<section class="form-wrapper wrapper">
+  <%= form_for picture, html: {class: 'form'} do |f| %>
+    <!-- <div class="field">
+      <%= f.label :image %>
+      <%= f.text_field :image %>
+    </div> -->
+
+    <div class="field">
+      <%= f.label :mood %>
+      <%= f.text_field :mood %>
+    </div>
+
+    <div class="field">
+      <%= f.submit 'Update Mood', class: 'btn-default' %>
+    </div>
+  <% end %>
+</section>
