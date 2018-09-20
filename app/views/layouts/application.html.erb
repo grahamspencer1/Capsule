@@ -25,6 +25,10 @@
        <% if current_user %>
          Signed in as <%= current_user.name %>,
          <%= link_to 'Log Out', session_path(current_user), method: :delete %>
+
+         <% if current_user.admin %>
+           | <%= link_to 'View Pictures', bg_pictures_path %>
+         <% end %>
        <% else %>
          <!-- <%#= link_to "Log in", new_session_path %> or <%#= link_to "Sign up", new_user_path %> -->
        <% end %>
