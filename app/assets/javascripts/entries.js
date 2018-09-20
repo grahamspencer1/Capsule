@@ -1,16 +1,14 @@
-  // var entryIndex = 1;
-  // showEntry(entryIndex);
-  //
-  // function goEntry(n) {
-  // showEntry(entryIndex += n);
-  // }
-  // function showEntry(n) {
-  //     var i;
-  //     var x = document.selectqueery("currentEntry");
-  //     if (n > x.length) {entryIndex = 1}
-  //     if (n < 1) {entryIndex = x.length} ;
-  //     for (i = 0; i < x.length; i++) {
-  //         x[i].style.display = "none";
-  //     }
-  //     x[entryIndex-1].style.display = "block";
-  // }
+document.addEventListener('DOMContentLoaded' , function(){
+  var checkbox = document.querySelector('#entry_private')
+    checkbox.addEventListener('change', function (e) {
+      if (!(e.target.checked)) {
+        var txt;
+        var r = confirm("WARNING - Unchecking this box will make your entry visible to other Capsule users. Your screen name, email, and other personal information will not be shown, but the content itself will. Are you sure you want to share this with the world?");
+        if (r == true) {
+          console.log("Okay");
+        } else {
+          e.target.checked = true;
+        }
+      }
+    });
+});
