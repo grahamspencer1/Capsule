@@ -61,7 +61,7 @@ class EntriesController < ApplicationController
     @entry.bg_picture_id = 1
     @entry.mood = "Neutral"
     @entry.auto_mood = false
-    
+
     if @entry.save
       flash[:alert] = "Successfully updated entry"
       redirect_to "/entries/#{@entry.id}"
@@ -73,6 +73,4 @@ class EntriesController < ApplicationController
   def edit
     @entry = Entry.find(params[:id])
   end
-
-
 end
