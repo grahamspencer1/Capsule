@@ -35,3 +35,27 @@
     }
   }
 }
+
+.single-entry-container {
+  padding: 0 10px;
+
+  .entry-title-wrapper {
+    margin: 1.6em 0;
+
+    h1 {
+      text-align: left;
+    }
+
+    h3 {
+      text-align: left;
+      font-family: $font-normal;
+      font-weight: 300;
+      font-size: 1.2em;
+    }
+  }
+
+  .entry-content {
+    white-space: pre-line;
+    line-height: 1.2em;
+  }
+}
