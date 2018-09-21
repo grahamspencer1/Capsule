@@ -3,16 +3,19 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
   margin: 1.5rem auto;
+}
 
-  .picture {
-    &-container {
-      background: darken($white, 5%);
-      background-size: cover !important;
-      background-position: center center !important;
-      background-repeat: no-repeat !important;
-      width: 150px;
-      height: 200px;
-    }
+.picture {
+  // opacity: 0.9;
+  position: absolute;
+
+  &-container {
+    background: darken($white, 5%);
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    width: 150px;
+    height: 200px;
   }
 }
 

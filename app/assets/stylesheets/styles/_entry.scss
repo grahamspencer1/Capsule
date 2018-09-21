@@ -8,8 +8,8 @@
       background: darken($white, 5%);
       width: 150px;
       height: 200px;
-      display: inline-grid;
       font-size: 1.4em;
+      position: relative;
 
       &:hover {
         background: lighten($brand-gray, 50%);
@@ -17,7 +17,14 @@
     }
 
     &-title {
-      font-family: $font-header;
+      &-wrapper {
+        display: inline-grid;
+        width: inherit;
+        height: inherit;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
     }
 
     &-content {
