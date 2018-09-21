@@ -31,10 +31,11 @@ class EntriesController < ApplicationController
     @entry.title = params[:entry][:title]
     @entry.content = params[:entry][:content]
     @entry.user = current_user
+    @entry.private = params[:entry][:private]
 
-    if params[:private] == false
-      @title.private = false
-    end
+    # if params[:private] == false
+    #   @title.private = false
+    # end
 
     @entry.bg_picture_id = 1
     @entry.mood = "Neutral"
@@ -65,10 +66,11 @@ class EntriesController < ApplicationController
     @entry.title = params[:entry][:title]
     @entry.content = params[:entry][:content]
     @entry.user = current_user
+    @entry.private = params[:entry][:private]
 
-    if params[:private] == false
-      @title.private = false
-    end
+    # if params[:private] == false
+    #   @title.private = false
+    # end
 
     @entry.bg_picture_id = 1
     @entry.mood = "Neutral"
