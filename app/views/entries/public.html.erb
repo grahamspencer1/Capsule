@@ -1,27 +1,11 @@
-<!-- <section class="capsule-main wrapper">
-  <br><h1>Public Entries</h1>
+<br>
+<h1>Public Entries</h1>
 
-  <% Entry.where(private: false).each do |entry| %>
-    <pre>
-      <p>
-      <%= entry.title %>
-      <%= entry.content %>
-      </p>
-    </pre>
-  <% end %>
-</section> -->
-
-<section class="capsule-main wrapper">
-  <section class="entry-wrapper">
-    <% Entry.where(private: false).each do |entry| %>
-      <%= link_to entry_path(entry) do %>
-        <div class="entry-container">
-          <div class="picture-container picture" style="background: url('<%= image_path(entry.bg_picture.image) %>')"></div>
-          <div class="entry-title-wrapper">
-            <h2 class="entry-title"><%= entry.title %></h2>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  </section>
-</section>
+<% Entry.where(private: false).each do |entry| %>
+    <p>
+    <%= entry.title %>
+    <br>
+    <%= entry.content %>
+    </p>
+    <hr>
+<% end %>
