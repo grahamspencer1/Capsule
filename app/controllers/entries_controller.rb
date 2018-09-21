@@ -5,8 +5,7 @@ class EntriesController < ApplicationController
     @entries = Entry.last_five_entry(current_user)
     if params[:from_date]
       date = params[:from_date][:date]
-      # raise
-      @entries = Entry.entry_search(date)
+      @entries = Entry.entry_search(current_user, date)
     end
   end
 
