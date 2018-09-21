@@ -11,7 +11,7 @@ class EntriesController < ApplicationController
   end
 
   def show
-     @entry = Entry.find(params[:id])
+    @entry = Entry.find(params[:id])
      if @entry
        @entries = current_user.entries.reverse
 
