@@ -2,6 +2,7 @@ class EntriesController < ApplicationController
   before_action :require_login
 
   def index
+    # @pictures = BgPicture.all
     @entries = Entry.last_five_entry(current_user)
     if params[:from_date]
       date = params[:from_date][:date]
