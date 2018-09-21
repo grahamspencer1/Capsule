@@ -23,12 +23,12 @@
 
     <div class="field check-box-wrapper">
       <%= f.label 'Set this post to private?' %>
-      <%= f.check_box :private, {checked: true}, 'yes', 'no' %>
+      <%= f.check_box :private, {checked: @entry.private}, 'true', 'false' %>
     </div>
 
     <div class="field check-box-wrapper">
       <%= f.label 'Auto-Mood' %>
-      <%= f.check_box :auto_mood, {checked: true}, 'yes', 'no' %>
+      <%= f.check_box :auto_mood, {checked: @entry.auto_mood}, 'true', 'false' %>
     </div>
 
     <div class="field">

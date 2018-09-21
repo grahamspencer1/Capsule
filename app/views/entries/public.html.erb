@@ -1,4 +1,18 @@
+<<<<<<< HEAD
 <h1>This is the public page</h1>
  <% Entry.where(private: false).each do |entry| %>
  <pre> <%= entry.content %> </pre>
  <% end %>
+=======
+<br>
+<h1>Public Entries</h1>
+
+<% Entry.where(private: false).each do |entry| %>
+    <p>
+    <%= entry.title %>
+    <br>
+    <%= entry.content %>
+    </p>
+    <hr>
+<% end %>
+>>>>>>> 7bdb4e68b02acd2b1272e7f8a8b64c54eb239398

@@ -22,18 +22,17 @@
       </div>
 
       <div class="current-user">
-       <% if current_user %>
-         Signed in as <%= current_user.name %>,
-         <%= link_to 'Log Out', session_path(current_user), method: :delete %>
-        |
-        <%= link_to 'Browse Public Entries', entries_public_path %>
+        <% if current_user %>
+          Signed in as <%= current_user.name %>
+          |
+          <%= link_to 'Log Out', session_path(current_user), method: :delete %>
+          |
+          <%= link_to 'Browse Public Entries', entries_public_path %>
 
-         <% if current_user.admin %>
-           | <%= link_to 'View Pictures', bg_pictures_path %>
-         <% end %>
-       <% else %>
-         <!-- <%#= link_to "Log in", new_session_path %> or <%#= link_to "Sign up", new_user_path %> -->
-       <% end %>
+          <% if current_user.admin %>
+            | <%= link_to 'View Pictures', bg_pictures_path %>
+          <% end %>
+        <% end %>
       </div>
     </header>
 
@@ -44,11 +43,13 @@
         <% if flash[:notice] %>
           <p class="notice">
             <%= flash[:notice] %>
+            <span id='close' onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'>(X)</span>
           </p>
         <% end %>
         <% if flash[:alert] %>
           <p class="alert">
             <%= flash[:alert] %>
+            <span id='close' onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;'>(X)</span>
           </p>
         <% end %>
       </section>
