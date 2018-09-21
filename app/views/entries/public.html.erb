@@ -1,7 +1,11 @@
-<br><h1>This is the public page</h1>
+<br>
+<h1>Public Entries</h1>
 
- <% Entry.where(private: false).each do |entry| %>
- <pre><br>
+<% Entry.where(private: false).each do |entry| %>
+    <p>
     <%= entry.title %>
-     <%= entry.content %> </pre>
- <% end %>
+    <br>
+    <%= entry.content %>
+    </p>
+    <hr>
+<% end %>
