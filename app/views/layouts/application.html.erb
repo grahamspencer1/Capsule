@@ -25,6 +25,8 @@
        <% if current_user %>
          Signed in as <%= current_user.name %>,
          <%= link_to 'Log Out', session_path(current_user), method: :delete %>
+        |
+        <%= link_to 'Browse Public Entries', entries_public_path %>
 
          <% if current_user.admin %>
            | <%= link_to 'View Pictures', bg_pictures_path %>
@@ -38,6 +40,8 @@
         <%= link_to 'Browse Public Entries', bg_pictures_path %>
       </div>
     </header>
+
+
 
     <main>
       <section class="error-block">
