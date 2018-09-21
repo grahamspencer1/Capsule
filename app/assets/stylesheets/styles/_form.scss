@@ -47,6 +47,24 @@
         height: auto;
       }
     }
+
+    .radio-wrapper {
+      display: inline-block;
+      padding: 0 10px;
+
+      label {
+        text-transform: capitalize;
+      }
+
+      label, input {
+        display: inline-block;
+      }
+
+      input[type="radio"]{
+        width: auto;
+        height: auto;
+      }
+    }
   }
 
   .call-to-action {

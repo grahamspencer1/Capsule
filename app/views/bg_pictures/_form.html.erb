@@ -1,13 +1,20 @@
 <section class="form-wrapper wrapper">
   <%= form_for picture, html: {class: 'form'} do |f| %>
-    <!-- <div class="field">
-      <%= f.label :image %>
-      <%= f.text_field :image %>
-    </div> -->
-
     <div class="field">
-      <%= f.label :mood %>
-      <%= f.text_field :mood %>
+      <div class="radio-wrapper">
+        <%= f.label :mood_positive, "Positive" %>
+        <%= f.radio_button :mood, "positive" %>
+      </div>
+
+      <div class="radio-wrapper">
+        <%= f.label :mood_neutral, "Neutral" %>
+        <%= f.radio_button :mood, "neutral" %>
+      </div>
+
+      <div class="radio-wrapper">
+        <%= f.label :mood_negative, "Negative" %>
+        <%= f.radio_button :mood, "negative" %>
+      </div>
     </div>
 
     <div class="field">
