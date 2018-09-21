@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'entries/public' => 'entries/public'
   resources :entries
   resources :bg_pictures
   resources :users, only: [:new, :create]
@@ -7,4 +8,5 @@ Rails.application.routes.draw do
   get 'sessions' => 'sessions#new'
 
   root 'sessions#new'
+
 end
