@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded' , function(){
-  var checkbox = document.querySelector('#entry_private')
+  var checkbox = document.querySelector('#entry_private');
+  if (checkbox) {
     checkbox.addEventListener('change', function (e) {
       if (!(e.target.checked)) {
         var txt;
@@ -11,4 +12,5 @@ document.addEventListener('DOMContentLoaded' , function(){
         }
       }
     });
+  }
 });
