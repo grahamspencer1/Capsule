@@ -1,5 +1,5 @@
 class Entry < ApplicationRecord
-  before_validation :sentiment_response
+  # before_validation :sentiment_response
   belongs_to :user
   belongs_to :bg_picture
 
@@ -15,7 +15,7 @@ class Entry < ApplicationRecord
     current_user.entries.where("created_at >= ? ", date)
   end
 
-  def sentiment_response
+  def self.sentiment_response(content)
     query = {"text" => "#{content}"}
     headers = {
       "X-Mashape-Key" => "#{ENV["SENTIMENT_KEY"]}",
@@ -28,6 +28,6 @@ class Entry < ApplicationRecord
       :headers => headers
     )
 
-    self.mood = response["type"]
+    mood = response["type"]
   end
 end

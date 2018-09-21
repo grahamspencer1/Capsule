@@ -2,7 +2,6 @@ class EntriesController < ApplicationController
   before_action :require_login
 
   def index
-    # @pictures = BgPicture.all
     @entries = Entry.last_five_entry(current_user)
     if params[:from_date]
       date = params[:from_date][:date]
@@ -33,6 +32,16 @@ class EntriesController < ApplicationController
     @entry.user = current_user
     @entry.private = params[:entry][:private]
     @entry.bg_picture_id = 1
+    @entry.auto_mood = params[:entry][:auto_mood]
+
+    if @entry.auto_mood
+      p "hello:::::::::::::::#{@entry.auto_mood}"
+      # @entry.auto_mood = true
+      @entry.mood = Entry.sentiment_response(@entry.content)
+    else
+      # @entry.auto_mood = false
+      @entry.mood = "neutral"
+    end
 
     if @entry.save
       flash[:alert] = "Time capsule created - After today, you won't be able to edit this entry!"
@@ -60,10 +69,17 @@ class EntriesController < ApplicationController
     @entry.content = params[:entry][:content]
     @entry.user = current_user
     @entry.private = params[:entry][:private]
+    @entry.auto_mood = params[:entry][:auto_mood]
 
     @entry.bg_picture_id = 1
-    # @entry.mood = "Neutral"
-    # @entry.auto_mood = false
+
+    if @entry.auto_mood
+      # @entry.auto_mood = true
+      @entry.mood = Entry.sentiment_response(@entry.content)
+    else
+      # @entry.auto_mood = false
+      @entry.mood = "neutral"
+    end
 
     if @entry.save
       flash[:alert] = "Entry successfully updated"
