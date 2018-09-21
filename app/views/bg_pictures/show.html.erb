@@ -1,0 +1,8 @@
+<section class="picture-single">
+  <%= image_tag(@picture.image) %>
+  <p>Mood: <%= @picture.mood.capitalize %></p>
+
+  <%= render 'form', picture: @picture %>
+
+  <%= link_to 'Delete', bg_picture_path(@picture), :method => :delete, data: {:confirm => "Are you sure you want to delete this picture?"}, class: 'btn-default' %>
+</section>

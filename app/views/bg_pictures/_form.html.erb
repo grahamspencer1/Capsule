@@ -1,0 +1,24 @@
+<section class="form-wrapper wrapper">
+  <%= form_for picture, html: {class: 'form'} do |f| %>
+    <div class="field">
+      <div class="radio-wrapper">
+        <%= f.label :mood_positive, "Positive" %>
+        <%= f.radio_button :mood, "positive" %>
+      </div>
+
+      <div class="radio-wrapper">
+        <%= f.label :mood_neutral, "Neutral" %>
+        <%= f.radio_button :mood, "neutral" %>
+      </div>
+
+      <div class="radio-wrapper">
+        <%= f.label :mood_negative, "Negative" %>
+        <%= f.radio_button :mood, "negative" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.submit 'Update Mood', class: 'btn-default' %>
+    </div>
+  <% end %>
+</section>

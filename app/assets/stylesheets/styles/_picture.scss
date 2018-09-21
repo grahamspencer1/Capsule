@@ -15,3 +15,34 @@
     }
   }
 }
+
+.picture-single {
+  margin: 2rem auto;
+  padding: 0 10px;
+
+  .form-wrapper {
+    padding: 0;
+    text-align: left;
+  }
+
+  p {
+    padding: 0 10px;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  img {
+    margin-bottom: 2rem;
+  }
+
+  a {
+    margin: 2rem auto;
+    font-size: 1.4em;
+  }
+
+  .btn-default {
+    width: 100%;
+    padding: 8px 0;
+    color: $white;
+  }
+}
