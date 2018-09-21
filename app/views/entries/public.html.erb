@@ -1,0 +1,4 @@
+<h1>This is the public page</h1>
+ <% Entry.where(private: false).each do |entry| %>
+ <pre> <%= entry.content %> </pre>
+ <% end %>

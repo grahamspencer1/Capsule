@@ -21,6 +21,10 @@ class EntriesController < ApplicationController
     end
   end
 
+  def categoryshow
+    @entry = entry.find(params[:private])
+  end
+
   def create
     @entry = Entry.new
     @entry.title = params[:entry][:title]
