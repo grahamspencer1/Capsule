@@ -8,16 +8,35 @@
       background: darken($white, 5%);
       width: 150px;
       height: 200px;
-      display: inline-grid;
       font-size: 1.4em;
-
-      &:hover {
-        background: lighten($brand-gray, 50%);
-      }
+      position: relative;
     }
 
     &-title {
-      font-family: $font-header;
+      &-wrapper {
+        display: inline-grid;
+        width: inherit;
+        height: inherit;
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        &::before {
+          content: '';
+          position: absolute;
+          width: inherit;
+          height: inherit;
+          opacity: 0.2;
+          background: $brand;
+          z-index: 0;
+        }
+
+        &:hover {
+          &::before {
+            opacity: 0.4;
+          }
+        }
+      }
     }
 
     &-content {
@@ -32,6 +51,7 @@
     &-title, &-date {
       font-weight: 300;
       margin: 1rem auto;
+      color: $white;
     }
   }
 }
