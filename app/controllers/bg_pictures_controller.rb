@@ -15,6 +15,8 @@ class BgPicturesController < ApplicationController
   end
 
   def create
+    @picture.image = params[:bg_pictures][:image]
+    @picture.mood = params[:bg_pictures][:mood]
   end
 
   def edit
@@ -22,6 +24,16 @@ class BgPicturesController < ApplicationController
   end
 
   def update
+    @picture = BgPicture.find(params[:id])
+    # @picture.image = params[:bg_picture][:image]
+    @picture.mood = params[:bg_picture][:mood]
+
+    if @picture.save
+      flash[:alert] = "Successfully updated picture"
+      redirect_to bg_pictures_url
+    else
+      render bg_pictures_url
+    end
   end
 
   def destroy
