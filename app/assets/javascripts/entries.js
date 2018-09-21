@@ -12,5 +12,17 @@ document.addEventListener('DOMContentLoaded' , function(){
         }
       }
     });
+}
+var automoodCheckbox = document.querySelector('#entry_auto_mood');
+  if (automoodCheckbox) {
+    automoodCheckbox.addEventListener('change', function (e) {
+      if (!(e.target.checked)) {
+           picture_container.style.display = "block";
+          }
+        });
+        
   }
+
+
+
 });
