@@ -32,14 +32,7 @@ class EntriesController < ApplicationController
     @entry.content = params[:entry][:content]
     @entry.user = current_user
     @entry.private = params[:entry][:private]
-
-    # if params[:private] == false
-    #   @title.private = false
-    # end
-
     @entry.bg_picture_id = 1
-    @entry.mood = "Neutral"
-    @entry.auto_mood = false
 
     if @entry.save
       flash[:alert] = "Time capsule created - After today, you won't be able to edit this entry!"
@@ -68,13 +61,9 @@ class EntriesController < ApplicationController
     @entry.user = current_user
     @entry.private = params[:entry][:private]
 
-    # if params[:private] == false
-    #   @title.private = false
-    # end
-
     @entry.bg_picture_id = 1
-    @entry.mood = "Neutral"
-    @entry.auto_mood = false
+    # @entry.mood = "Neutral"
+    # @entry.auto_mood = false
 
     if @entry.save
       flash[:alert] = "Entry successfully updated"
@@ -85,14 +74,12 @@ class EntriesController < ApplicationController
   end
 
   def edit
-
     @entry = Entry.find(params[:id])
-     today = Time.now
-     today_date = today.strftime("%d %b %Y")
+    today = Time.now
+    today_date = today.strftime("%d %b %Y")
     if @entry.created_at < today_date
-      # && entry_month == today_month && entry_year == today_year
-       flash.now[:alert] = "Entries cannot be edited beyond the day they were made - Learn to appreciate how you felt this day!"
-       render :show
+      flash.now[:alert] = "Entries cannot be edited beyond the day they were made - Learn to appreciate how you felt this day!"
+      render :show
     end
   end
 end
