@@ -79,6 +79,14 @@ class EntriesController < ApplicationController
   end
 
   def edit
+
     @entry = Entry.find(params[:id])
+     today = Time.now
+     today_date = today.strftime("%d %b %Y")
+    if @entry.created_at < today_date
+      # && entry_month == today_month && entry_year == today_year
+       flash.now[:alert] = "History and facts can never be changed"
+       render :show
+    end
   end
 end
