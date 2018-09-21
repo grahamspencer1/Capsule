@@ -37,10 +37,10 @@ class EntriesController < ApplicationController
     @entry.auto_mood = false
 
     if @entry.save
-      flash[:alert] = "Success!"
+      flash[:alert] = "Time capsule created - After today, you won't be able to edit this entry!"
       redirect_to "/entries"
     else
-      flash[:alert] = "Failure!"
+      flash[:alert] = "Entry not saved! Please try again"
       render "entries/new"
     end
   end
@@ -71,7 +71,7 @@ class EntriesController < ApplicationController
     @entry.auto_mood = false
 
     if @entry.save
-      flash[:alert] = "Successfully updated entry"
+      flash[:alert] = "Entry successfully updated"
       redirect_to "/entries/#{@entry.id}"
     else
       render :edit
@@ -85,7 +85,7 @@ class EntriesController < ApplicationController
      today_date = today.strftime("%d %b %Y")
     if @entry.created_at < today_date
       # && entry_month == today_month && entry_year == today_year
-       flash.now[:alert] = "History and facts can never be changed"
+       flash.now[:alert] = "Entries cannot be edited beyond the day they were made - Learn to appreciate how you felt this day!"
        render :show
     end
   end
