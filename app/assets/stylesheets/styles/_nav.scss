@@ -1,17 +1,23 @@
 .main-nav {
   position: fixed;
   bottom: 0;
-  background: $white;
-  padding: 1rem 0;
+  @include linearGradient(left, #dcaedc, #d4d3dd);
 
   ul {
     display: inline-grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
+    border-top: 1px solid $brand;
   }
 
   .nav-links {
-    place-self: center center;
+    border-right: 1px solid $brand;
+    place-self: stretch;
+    padding: 1rem 0;
+
+    &:last-child {
+      border: none;
+    }
 
     svg {
       font-size: 2.2em;
@@ -22,6 +28,17 @@
       text-align: center;
       margin: 0 auto;
       line-height: inherit;
+    }
+
+    a, p {
+      color: $brand-gray;
+    }
+
+
+    &:hover {
+      a, p {
+        color: $brand;
+      }
     }
   }
 }

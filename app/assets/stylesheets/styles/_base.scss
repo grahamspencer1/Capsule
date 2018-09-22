@@ -31,6 +31,7 @@ header {
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 2fr;
   height: 100px;
+  @include linearGradient(bottom, rgba(220, 174, 220, 0.3), rgba(212, 211, 221, 0.03));
 }
 
 main {
