@@ -1,0 +1,27 @@
+.main-nav {
+  position: fixed;
+  bottom: 0;
+  background: $white;
+  padding: 1rem 0;
+
+  ul {
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .nav-links {
+    place-self: center center;
+
+    svg {
+      font-size: 2.2em;
+      margin: 1rem auto;
+    }
+
+    p {
+      text-align: center;
+      margin: 0 auto;
+      line-height: inherit;
+    }
+  }
+}

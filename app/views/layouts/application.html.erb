@@ -26,8 +26,6 @@
           Signed in as <%= current_user.name %>
           |
           <%= link_to 'Log Out', session_path(current_user), method: :delete %>
-          |
-          <%= link_to 'Browse Public Entries', entries_public_path %>
 
           <% if current_user.admin %>
             | <%= link_to 'View Pictures', bg_pictures_path %>
@@ -55,11 +53,35 @@
       </section>
 
       <%= yield %>
+
+      <% if current_user %>
+        <nav class="main-nav">
+          <ul>
+            <li class="nav-links">
+              <%= link_to entries_public_path do %>
+                <i class="fas fa-book-reader"></i>
+                <p>View Public Entry</p>
+              <% end %>
+            </li>
+            <li class="nav-links">
+              <%= link_to new_entry_path do %>
+                <i class="fas fa-plus"></i>
+                <p>New Entry</p>
+              <% end %>
+            </li>
+            <li class="nav-links">
+              <%= link_to entries_path do %>
+                <i class="fas fa-book"></i>
+                <p>View Entries</p>
+              <% end %>
+            </li>
+          </ul>
+        </nav>
+      <% end %>
     </main>
 
     <footer>
       <p>&copy; Bitmaker 2018 | <a href="https://github.com/grahamspencer1/Capsule">See Repo Here</a></p>
     </footer>
-
   </body>
 </html>
