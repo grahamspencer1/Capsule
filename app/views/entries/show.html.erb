@@ -1,9 +1,11 @@
 <section class="single-entry-container current-entry">
-  <p>
-    <%= link_to("Edit", "/entries/#{@entry.id}/edit") %>
-    |
-    <%= link_to("Delete", "/entries/#{@entry.id}", method: :delete, data: {:confirm => "Are you sure you want to delete this entry?"}) %>
-  </p>
+  <% if current_user == @entry.user %>
+    <p>
+      <%= link_to("Edit", "/entries/#{@entry.id}/edit") %>
+      |
+      <%= link_to("Delete", "/entries/#{@entry.id}", method: :delete, data: {:confirm => "Are you sure you want to delete this entry?"}) %>
+    </p>
+  <% end %>
 
   <div class="entry-title-wrapper">
     <h1><%= @entry.title %></h1>
