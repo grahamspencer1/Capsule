@@ -1,7 +1,1 @@
-<section class="picture-wrapper">
-  <% @pictures.each do |picture| %>
-    <%= link_to bg_picture_path(picture) do %>
-      <div class="picture-container" style="background: url('<%= image_path(picture.image) %>')"></div>
-    <% end %>
-  <% end %>
-</section>
+<%= render 'gallery', pictures: @pictures %>
