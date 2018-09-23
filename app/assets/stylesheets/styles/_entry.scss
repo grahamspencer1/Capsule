@@ -3,6 +3,12 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
 
+  @include tablet {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 4rem;
+    margin: 2rem auto;
+  }
+
   .entry {
     &-container {
       background: darken($white, 5%);
@@ -58,6 +64,12 @@
 
 .single-entry-container {
   padding: 0 10px;
+
+  @include tablet {
+    margin: 0 auto;
+    max-width: 70%;
+    max-width: 70vw;
+  }
 
   .entry-title-wrapper {
     margin: 1.6em 0;

@@ -17,7 +17,11 @@ document.addEventListener('DOMContentLoaded' , function(){
   // footer height if nav exists
   var nav = document.querySelector(".main-nav");
   var footer = document.querySelector("footer");
-  if (nav) {
-    footer.style.height = "170px";
+
+  if (nav && nav.classList.contains("visible")) {
+    // nav.classList.remove("hidden");
+    footer.classList.add("nav-mod");
+  } else {
+    footer.classList.remove("nav-mod");
   }
 });

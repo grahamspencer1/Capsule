@@ -6,7 +6,7 @@
   @include linearGradient(left, #dcaedc, 0%, #d4d3dd, 100%);
 
   ul {
-    display: inline-grid;
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     // border-top: 1px solid $brand;
@@ -43,6 +43,10 @@
       }
     }
   }
+}
+
+.nav-mod {
+  height: 160px;
 }
 
 .entry-btn {

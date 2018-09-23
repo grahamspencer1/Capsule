@@ -1,6 +1,12 @@
 .form-wrapper {
   padding: 0 1rem;
 
+  @include tablet {
+    margin: 0 auto;
+    max-width: 70%;
+    max-width: 70vw;
+  }
+
   .form {
     .field {
       width: 100%;

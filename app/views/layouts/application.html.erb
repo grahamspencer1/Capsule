@@ -65,35 +65,33 @@
       </section>
 
       <%= yield %>
+
+      <nav class="main-nav <%= current_user ? 'visible' : 'hidden' %>">
+        <ul>
+          <li class="nav-links">
+            <%= link_to entries_public_path do %>
+              <i class="fas fa-book-reader"></i>
+              <p>Public Entry</p>
+            <% end %>
+          </li>
+          <li class="nav-links">
+            <%= link_to new_entry_path do %>
+              <i class="fas fa-plus"></i>
+              <p>New Entry</p>
+            <% end %>
+          </li>
+          <li class="nav-links">
+            <%= link_to entries_path do %>
+              <i class="fas fa-book"></i>
+              <p>View Entries</p>
+            <% end %>
+          </li>
+        </ul>
+      </nav>
     </main>
 
     <footer>
       <p>&copy; Bitmaker 2018 | <a href="https://github.com/grahamspencer1/Capsule">See Repo Here</a></p>
-
-      <% if current_user %>
-        <nav class="main-nav">
-          <ul>
-            <li class="nav-links">
-              <%= link_to entries_public_path do %>
-                <i class="fas fa-book-reader"></i>
-                <p>View Public Entry</p>
-              <% end %>
-            </li>
-            <li class="nav-links">
-              <%= link_to new_entry_path do %>
-                <i class="fas fa-plus"></i>
-                <p>New Entry</p>
-              <% end %>
-            </li>
-            <li class="nav-links">
-              <%= link_to entries_path do %>
-                <i class="fas fa-book"></i>
-                <p>View Entries</p>
-              <% end %>
-            </li>
-          </ul>
-        </nav>
-      <% end %>
     </footer>
   </body>
 </html>
