@@ -3,13 +3,13 @@
   bottom: 0;
   width: 100%;
   left: 0;
-  @include linearGradient(left, #dcaedc, #d4d3dd);
+  @include linearGradient(left, #dcaedc, 0%, #d4d3dd, 100%);
 
   ul {
     display: inline-grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
-    border-top: 1px solid $brand;
+    // border-top: 1px solid $brand;
   }
 
   .nav-links {
@@ -46,6 +46,8 @@
 }
 
 .entry-btn {
+  place-self: center stretch;
+
   svg {
     font-size: 2.2em;
     margin: 1rem auto;
