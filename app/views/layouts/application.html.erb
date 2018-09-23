@@ -11,7 +11,8 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" integrity="sha384-kW+oWsYx3YpxvjtZjFXqazFpA7UP/MbiY4jvs+RWZo2+N94PFZ36T6TFkc9O3qoB" crossorigin="anonymous"></script>
   </head>
 
-  <body>
+  <body class="background">
+    <!-- <div class="gradient"></div> -->
     <header>
       <% if @previous_entry %>
         <!-- <%= button_to "NEXT", entry_path(@previous_entry), class: 'previous_entry', method: :get %> -->
@@ -48,7 +49,7 @@
       </div>
     </header>
 
-    <main>
+    <main class="bg1">
       <section class="error-block">
         <% if flash[:notice] %>
           <p class="notice">

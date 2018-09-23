@@ -64,6 +64,7 @@
 
 .single-entry-container {
   padding: 0 10px;
+  // min-height: calc(100vh - 240px);
 
   @include tablet {
     margin: 0 auto;
