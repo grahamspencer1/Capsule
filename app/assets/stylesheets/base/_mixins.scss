@@ -1,0 +1,22 @@
+@mixin linearGradient($dir, $top, $start, $bottom, $end){
+    background: $top; /* Old browsers */
+    background: -moz-linear-gradient($dir, $top $start, $bottom $end); /* FF3.6+ */
+    background: -webkit-gradient(linear, $dir top, $dir bottom, color-stop($start, $top), color-stop($end, $bottom)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient($dir,  $top $start, $bottom $end); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient($dir,  $top $start, $bottom $end); /* Opera 11.10+ */
+    background: -ms-linear-gradient($dir,  $top $start, $bottom $end); /* IE10+ */
+    background: linear-gradient(to $dir,  $top $start, $bottom $end); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}

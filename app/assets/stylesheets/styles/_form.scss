@@ -1,6 +1,12 @@
 .form-wrapper {
   padding: 0 1rem;
 
+  @include tablet {
+    margin: 0 auto;
+    max-width: 70%;
+    max-width: 70vw;
+  }
+
   .form {
     .field {
       width: 100%;
@@ -112,6 +118,7 @@
       -webkit-appearance: none;
       color: lighten($dark-gray, 20%);
       font-family: $font-header;
+      cursor: pointer;
       font-weight: 300;
       font-size: 1.8rem;
       border: 1px solid $light-gray;
@@ -128,6 +135,7 @@
       &::-webkit-calendar-picker-indicator {
         color: rgba(0, 0, 0, 0);
         opacity: 1;
+        cursor: pointer;
 
         &:hover, &:focus {
         	background: none;

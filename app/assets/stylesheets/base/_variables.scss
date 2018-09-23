@@ -8,6 +8,14 @@ $red: #f00;
 $brand: #a17d98;
 $brand-gray: #585759;
 
-//typography
+// transparent colours
+$brand-trans: rgba(161, 125, 152, 0.3);
+$brand-gray-trans: rgba(88, 87, 89, 0) ;
+
+// typography
 $font-header: 'Oswald', sans-serif;
 $font-normal: 'Roboto Condensed', sans-serif;
+
+// media breakpoints
+$tablet-width: 768px;
+$desktop-width: 1024px;

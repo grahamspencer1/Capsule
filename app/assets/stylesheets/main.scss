@@ -1,8 +1,10 @@
 @import 'base/reset';
 @import 'base/variables';
+@import 'base/mixins';
 
 @import 'styles/base';
 @import 'styles/layout';
+@import 'styles/nav';
 @import 'styles/form';
 @import 'styles/entry';
 @import 'styles/picture';

@@ -12,7 +12,7 @@ class Entry < ApplicationRecord
   end
 
   def self.entry_search(current_user, date)
-    current_user.entries.where("created_at >= ? ", date)
+    current_user.entries.where("created_at >= ? ", date).order('id desc')
   end
 
   def self.sentiment_response(content)

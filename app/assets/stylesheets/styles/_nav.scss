@@ -1,0 +1,62 @@
+.main-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  @include linearGradient(left, #dcaedc, 0%, #d4d3dd, 100%);
+
+  ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    // border-top: 1px solid $brand;
+  }
+
+  .nav-links {
+    border-right: 1px solid $brand;
+    place-self: stretch;
+    padding: 1rem 0;
+
+    &:last-child {
+      border: none;
+    }
+
+    svg {
+      font-size: 2.2em;
+      margin: 1rem auto;
+    }
+
+    p {
+      text-align: center;
+      margin: 0 auto;
+      line-height: inherit;
+    }
+
+    a, p {
+      color: $brand-gray;
+    }
+
+    a {
+      display: block;
+    }
+
+    &:hover {
+      a, p {
+        color: $brand;
+      }
+    }
+  }
+}
+
+.nav-mod {
+  height: 160px;
+}
+
+.entry-btn {
+  place-self: center stretch;
+
+  svg {
+    font-size: 2.2em;
+    margin: 1rem auto;
+  }
+}

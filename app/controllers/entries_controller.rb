@@ -35,11 +35,8 @@ class EntriesController < ApplicationController
     @entry.auto_mood = params[:entry][:auto_mood]
 
     if @entry.auto_mood
-      p "hello:::::::::::::::#{@entry.auto_mood}"
-      # @entry.auto_mood = true
       @entry.mood = Entry.sentiment_response(@entry.content)
     else
-      # @entry.auto_mood = false
       @entry.mood = "neutral"
     end
 
@@ -74,10 +71,8 @@ class EntriesController < ApplicationController
     @entry.bg_picture = BgPicture.first
 
     if @entry.auto_mood
-      # @entry.auto_mood = true
       @entry.mood = Entry.sentiment_response(@entry.content)
     else
-      # @entry.auto_mood = false
       @entry.mood = "neutral"
     end
 
