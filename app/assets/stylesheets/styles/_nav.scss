@@ -36,6 +36,9 @@
       color: $brand-gray;
     }
 
+    a {
+      display: block;
+    }
 
     &:hover {
       a, p {
