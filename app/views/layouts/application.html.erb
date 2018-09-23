@@ -13,27 +13,27 @@
 
   <body>
     <header>
+      <% if @previous_entry %>
+        <!-- <%= button_to "NEXT", entry_path(@previous_entry), class: 'previous_entry', method: :get %> -->
+        <%= link_to entry_path(@previous_entry), class: "previous-entry entry-btn" do %>
+          <i class="fas fa-angle-left"></i>
+        <% end %>
+      <% end %>
+
       <div class="logo-wrapper">
         <% if !current_user %>
           <%= link_to image_tag('capsule-logo.svg', class: 'logo'), root_path %>
         <% else %>
           <%= link_to image_tag('capsule-logo.svg', class: 'logo'), entries_path %>
         <% end %>
-
-        <% if @previous_entry %>
-          <!-- <%= button_to "NEXT", entry_path(@previous_entry), class: 'previous_entry', method: :get %> -->
-          <%= link_to entry_path(@previous_entry), class: "previous-entry entry-btn" do %>
-            <i class="fas fa-angle-left"></i>
-          <% end %>
-        <% end %>
-
-        <% if @next_entry %>
-          <!-- <%= button_to "PREV", entry_path(@next_entry), class: 'next_entry', method: :get %> -->
-          <%= link_to entry_path(@next_entry), class: "next-entry entry-btn" do %>
-            <i class="fas fa-angle-right"></i>
-          <% end %>
-        <% end %>
       </div>
+
+      <% if @next_entry %>
+        <!-- <%= button_to "PREV", entry_path(@next_entry), class: 'next_entry', method: :get %> -->
+        <%= link_to entry_path(@next_entry), class: "next-entry entry-btn" do %>
+          <i class="fas fa-angle-right"></i>
+        <% end %>
+      <% end %>
 
       <div class="current-user">
         <% if current_user %>
@@ -65,6 +65,10 @@
       </section>
 
       <%= yield %>
+    </main>
+
+    <footer>
+      <p>&copy; Bitmaker 2018 | <a href="https://github.com/grahamspencer1/Capsule">See Repo Here</a></p>
 
       <% if current_user %>
         <nav class="main-nav">
@@ -90,10 +94,6 @@
           </ul>
         </nav>
       <% end %>
-    </main>
-
-    <footer>
-      <p>&copy; Bitmaker 2018 | <a href="https://github.com/grahamspencer1/Capsule">See Repo Here</a></p>
     </footer>
   </body>
 </html>

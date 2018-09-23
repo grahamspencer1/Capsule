@@ -1,6 +1,8 @@
 .main-nav {
   position: fixed;
   bottom: 0;
+  width: 100%;
+  left: 0;
   @include linearGradient(left, #dcaedc, #d4d3dd);
 
   ul {

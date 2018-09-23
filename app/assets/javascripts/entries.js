@@ -13,4 +13,11 @@ document.addEventListener('DOMContentLoaded' , function(){
       }
     });
   }
+
+  // footer height if nav exists
+  var nav = document.querySelector(".main-nav");
+  var footer = document.querySelector("footer");
+  if (nav) {
+    footer.style.height = "170px";
+  }
 });
