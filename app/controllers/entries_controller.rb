@@ -31,7 +31,7 @@ class EntriesController < ApplicationController
     @entry.content = params[:entry][:content]
     @entry.user = current_user
     @entry.private = params[:entry][:private]
-    @entry.bg_picture_id = 1
+    @entry.bg_picture = BgPicture.first
     @entry.auto_mood = params[:entry][:auto_mood]
 
     if @entry.auto_mood
@@ -71,7 +71,7 @@ class EntriesController < ApplicationController
     @entry.private = params[:entry][:private]
     @entry.auto_mood = params[:entry][:auto_mood]
 
-    @entry.bg_picture_id = 1
+    @entry.bg_picture = BgPicture.first
 
     if @entry.auto_mood
       # @entry.auto_mood = true
