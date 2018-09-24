@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded' , function(){
   var footer = document.querySelector("footer");
 
   if (nav && nav.classList.contains("visible")) {
-    // nav.classList.remove("hidden");
     footer.classList.add("nav-mod");
   } else {
     footer.classList.remove("nav-mod");

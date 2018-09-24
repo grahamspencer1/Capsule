@@ -65,6 +65,8 @@
 .single-entry-container {
   padding: 0 10px;
   // min-height: calc(100vh - 240px);
+  background: rgba(255, 255, 255, 0.7);
+  min-height: 100%;
 
   @include tablet {
     margin: 0 auto;

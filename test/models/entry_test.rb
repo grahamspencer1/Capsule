@@ -6,6 +6,15 @@ class EntryTest < ActiveSupport::TestCase
     @user = User.create(name: "Test", email: "test@test.com", password: "testtest", password_confirmation: "testtest")
     @bg_picture = BgPicture.create(mood: 'happy')
     @entry = Entry.create(title: "Test", content: "Lorem Ipsum", private: true, bg_picture_id: @bg_picture.id, user_id: @user.id, created_at: false, updated_at: false, mood: "happy", auto_mood: false)
+
+    @entryAutoMood = Entry.new(
+      title: "automood",
+      content: "happy",
+      private: true,
+      bg_picture: @bg_picture,
+      user: @user,
+      auto_mood: true
+    )
   end
 
   # Test works
@@ -56,4 +65,40 @@ class EntryTest < ActiveSupport::TestCase
     refute entry.valid?
   end
 
+  def test_that_sentiment_api_response_is_positive
+    entry = @entryAutoMood
+    query = {"text" => "#{entry.content}"}
+    headers = {
+      "X-Mashape-Key" => "#{ENV["SENTIMENT_KEY"]}",
+      "Accept" => "application/json"
+    }
+
+    response = HTTParty.post(
+      "https://twinword-sentiment-analysis.p.mashape.com/analyze/",
+      :query => query,
+      :headers => headers
+    )
+
+    assert_equal "positive", response["type"]
+  end
+
+  def test_that_sentiment_api_response_is_saved_to_entry_mood
+    entry = @entryAutoMood
+    query = {"text" => "#{entry.content}"}
+    headers = {
+      "X-Mashape-Key" => "#{ENV["SENTIMENT_KEY"]}",
+      "Accept" => "application/json"
+    }
+
+    response = HTTParty.post(
+      "https://twinword-sentiment-analysis.p.mashape.com/analyze/",
+      :query => query,
+      :headers => headers
+    )
+    entry.save
+
+    assert_equal "positive", response["type"]
+    assert_equal response["type"], entry.mood
+    assert entry.valid?
+  end
 end

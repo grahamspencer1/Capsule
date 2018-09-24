@@ -15,7 +15,6 @@
     <!-- <div class="gradient"></div> -->
     <header>
       <% if @previous_entry %>
-        <!-- <%= button_to "NEXT", entry_path(@previous_entry), class: 'previous_entry', method: :get %> -->
         <%= link_to entry_path(@previous_entry), class: "previous-entry entry-btn" do %>
           <i class="fas fa-angle-left"></i>
         <% end %>
@@ -30,7 +29,6 @@
       </div>
 
       <% if @next_entry %>
-        <!-- <%= button_to "PREV", entry_path(@next_entry), class: 'next_entry', method: :get %> -->
         <%= link_to entry_path(@next_entry), class: "next-entry entry-btn" do %>
           <i class="fas fa-angle-right"></i>
         <% end %>
@@ -72,7 +70,7 @@
           <li class="nav-links">
             <%= link_to entries_public_path do %>
               <i class="fas fa-book-reader"></i>
-              <p>Public Entry</p>
+              <p>Public Entries</p>
             <% end %>
           </li>
           <li class="nav-links">
