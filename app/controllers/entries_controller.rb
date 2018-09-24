@@ -1,5 +1,4 @@
 class EntriesController < ApplicationController
-
   before_action :require_login
 
   def index
@@ -18,7 +17,7 @@ class EntriesController < ApplicationController
       flash[:alert] = "You are not allowed to view this entry"
       redirect_to root_path
     end
-    
+
     if @entries.length > 1
       @next_entry = User.next_entry(@entry, @entries)
       @previous_entry = User.previous_entry(@entry, @entries)
@@ -55,6 +54,7 @@ class EntriesController < ApplicationController
 
   def new
     @entry = Entry.new
+    @pictures = BgPicture.all
   end
 
   def destroy
