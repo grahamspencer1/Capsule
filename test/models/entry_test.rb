@@ -101,11 +101,4 @@ class EntryTest < ActiveSupport::TestCase
     assert_equal response["type"], entry.mood
     assert entry.valid?
   end
-
-  def test_unsplash_api_response
-    entry = @entryAutoMood
-    response = HTTParty.get("https://api.unsplash.com/search/photos?client_id=#{ENV["UNSPLASH_KEY"]}&query=#{entry.content}")
-    response_json = JSON.parse(response.body)
-    p response
-  end
 end
