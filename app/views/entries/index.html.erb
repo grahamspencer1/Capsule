@@ -17,7 +17,7 @@
             <h2 class="entry-title">
               <%= entry.title %><br>
               <small>(<%= entry.mood&.capitalize || 'Neutral' %>)</small><br>
-              <small>(*<%= entry.bg_picture.mood.capitalize %>*)</small>
+              <small>(*<%= entry.bg_picture.mood.capitalize || '' %>*)</small>
             </h2>
             <time class="entry-date"><%= entry.created_at.strftime("%b/%d/%Y") %></time>
           </div>
