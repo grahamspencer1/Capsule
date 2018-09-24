@@ -1,10 +1,11 @@
-<h1>Public Entries</h1>
-<br>
-<% Entry.where(private: false).each do |entry| %>
-    <p>
-    <%= entry.title %>
+<section class="single-entry-container current-entry">
+
+  <div class="entry-title-wrapper">
+    <% Entry.where(private: false).each do |entry| %>
+    <h1><%= entry.title %></h1>
+    <h3><%= entry.content %></h3>
     <br>
-    <%= entry.content %>
-    </p>
-    <hr>
-<% end %>
+    <% end %>
+  </div>
+
+</section>
