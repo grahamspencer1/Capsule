@@ -1,4 +1,3 @@
 class BgPicture < ApplicationRecord
-  has_many :entries 
-
+  has_many :entries
 end
