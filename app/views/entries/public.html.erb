@@ -1,7 +1,5 @@
 <h1>Public Entries</h1>
 <br>
-<%= link_to "Random Public Entry", entries_random_path %>
-<br>
 <% Entry.where(private: false).each do |entry| %>
     <p>
     <%= entry.title %>
