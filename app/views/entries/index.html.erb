@@ -13,11 +13,11 @@
         <div class="entry-container">
           <div class="picture-container picture" style="background: url('<%= image_path(entry.bg_picture.image) %>')"></div>
 
-          <div class="entry-title-wrapper">
+          <div class="entry-title-wrapper" id="bg-img">
             <h2 class="entry-title">
               <%= entry.title %><br>
               <small>(<%= entry.mood&.capitalize || 'Neutral' %>)</small><br>
-              <small>(*<%= entry.bg_picture.mood.capitalize || '' %>*)</small>
+              <small>(*<%= entry.bg_picture.mood.capitalize %>*)</small>
             </h2>
             <time class="entry-date"><%= entry.created_at.strftime("%b/%d/%Y") %></time>
           </div>

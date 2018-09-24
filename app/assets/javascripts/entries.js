@@ -1,5 +1,42 @@
 document.addEventListener('DOMContentLoaded' , function(){
   var checkbox = document.querySelector('#entry_private');
+  // var bgImageShow = document.querySelector('#bg-img');
+
+
+  // var color = window.getComputedStyle(
+  //   document.querySelector('.bg1'), ':before'
+  // ).getPropertyByValue('background')
+  //
+  // console.log(color)
+
+
+var el = document.querySelector('.bg1')
+
+// (function(){
+    // $(this).addClass('background').attr('img','backgroundImage');
+// });;
+if(el){
+
+        el.addEventListener('click', function(e){
+          e.preventDefault();
+
+          $.ajax({
+            url: '/entries',
+            method: 'GET',
+            data: {image: 'https://m.blog.hu/je/jegyzetlap/image/jess-watters-684713-unsplash.jpg'},
+            dataType: 'html'
+          }).done(function(){
+                 $("#pic").append html
+              }
+          );
+
+        });
+      }
+
+  // bgImageShow.addEventListener('click', function(){
+    // document.body.style.backgroundImage = "url('jess-watters-684713-unsplash.jpg')";
+  // });
+
   if (checkbox) {
     checkbox.addEventListener('change', function(e) {
       if (!(e.target.checked)) {
@@ -33,4 +70,10 @@ document.addEventListener('DOMContentLoaded' , function(){
   } else {
     footer.classList.remove("nav-mod");
   }
+
+  ///click event for show page background image display
+
+
+
+
 });
