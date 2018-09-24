@@ -24,8 +24,14 @@ class EntriesController < ApplicationController
     end
   end
 
-  def categoryshow
-    @entry = entry.find(params[:private])
+  # def categoryshow
+  #   @entry = entry.find(params[:private])
+  # end
+
+  def new
+    @entry = Entry.new
+    @bg_picture = BgPicture.new
+    @pictures = BgPicture.all
   end
 
   def create
@@ -38,7 +44,6 @@ class EntriesController < ApplicationController
     @entry.auto_mood = params[:entry][:auto_mood]
 
     if @entry.auto_mood
-      # @entry.mood = Entry.sentiment_response(@entry.content)
       @bg_picture.image = Entry.unsplash_response(@entry.content)
       @entry.bg_picture = @bg_picture
     else
@@ -58,12 +63,6 @@ class EntriesController < ApplicationController
     end
   end
 
-  def new
-    @entry = Entry.new
-    @bg_picture = BgPicture.new
-    @pictures = BgPicture.all
-  end
-
   def destroy
     @entry = Entry.find(params[:id])
 
@@ -78,6 +77,7 @@ class EntriesController < ApplicationController
 
   def update
     @entry = Entry.find(params[:id])
+    @bg_picture = @entry.bg_picture
 
     if @entry.user != current_user
       flash[:alert] = "You are not allowed to edit this entry"
@@ -90,15 +90,18 @@ class EntriesController < ApplicationController
     @entry.private = params[:entry][:private]
     @entry.auto_mood = params[:entry][:auto_mood]
 
-    @entry.bg_picture = BgPicture.first
-
     if @entry.auto_mood
-      @entry.mood = Entry.sentiment_response(@entry.content)
+      @bg_picture.image = Entry.unsplash_response(@entry.content)
+      @entry.bg_picture = @bg_picture
     else
       @entry.mood = "neutral"
     end
 
     if @entry.save
+      if @entry.mood
+        @bg_picture.mood = @entry.mood
+        @bg_picture.save
+      end
       flash[:alert] = "Entry successfully updated"
       redirect_to "/entries/#{@entry.id}"
     else
