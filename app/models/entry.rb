@@ -32,6 +32,7 @@ class Entry < ApplicationRecord
   end
 
   def self.unsplash_response(keyword)
+    keyword = keyword.split.max_by{|word| word.length}
     response = HTTParty.get("https://api.unsplash.com/search/photos?client_id=#{ENV["UNSPLASH_KEY"]}&query=#{keyword}")
     response_json = JSON.parse(response.body)
     return response_json["results"].sample["urls"]["regular"]

@@ -35,20 +35,21 @@ class EntriesController < ApplicationController
     @entry.content = params[:entry][:content]
     @entry.user = current_user
     @entry.private = params[:entry][:private]
-    # @entry.bg_picture = BgPicture.first
     @entry.auto_mood = params[:entry][:auto_mood]
 
     if @entry.auto_mood
       # @entry.mood = Entry.sentiment_response(@entry.content)
       @bg_picture.image = Entry.unsplash_response(@entry.content)
-      @bg_picture.mood = @entry.mood
-      @bg_picture.save
       @entry.bg_picture = @bg_picture
     else
       @entry.mood = "neutral"
     end
 
     if @entry.save
+      if @entry.mood
+        @bg_picture.mood = @entry.mood
+        @bg_picture.save
+      end
       flash[:alert] = "Time capsule created - After today, you won't be able to edit this entry!"
       redirect_to "/entries"
     else
