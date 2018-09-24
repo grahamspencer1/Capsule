@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get 'entries/public' => 'entries/public'
-  # get 'entries/random' => 'entries#random'
 
   resources :entries
   resources :bg_pictures

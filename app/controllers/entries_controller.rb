@@ -24,10 +24,6 @@ class EntriesController < ApplicationController
     end
   end
 
-  # def categoryshow
-  #   @entry = entry.find(params[:private])
-  # end
-
   def new
     @entry = Entry.new
     @bg_picture = BgPicture.new
@@ -124,10 +120,4 @@ class EntriesController < ApplicationController
       render :show
     end
   end
-
-  def random
-    @entry = Entry.where(private: false).order("RANDOM()").first
-    redirect_to entry_path(@entry)
-  end
-
 end
