@@ -30,15 +30,20 @@ class EntriesController < ApplicationController
 
   def create
     @entry = Entry.new
+    @bg_picture = BgPicture.new
     @entry.title = params[:entry][:title]
     @entry.content = params[:entry][:content]
     @entry.user = current_user
     @entry.private = params[:entry][:private]
-    @entry.bg_picture = BgPicture.first
+    # @entry.bg_picture = BgPicture.first
     @entry.auto_mood = params[:entry][:auto_mood]
 
     if @entry.auto_mood
       @entry.mood = Entry.sentiment_response(@entry.content)
+      @bg_picture.image = Entry.unsplash_response(@entry.content)
+      @bg_picture.mood = @entry.mood
+      @bg_picture.save
+      @entry.bg_picture = @bg_picture
     else
       @entry.mood = "neutral"
     end
@@ -54,6 +59,7 @@ class EntriesController < ApplicationController
 
   def new
     @entry = Entry.new
+    @bg_picture = BgPicture.new
     @pictures = BgPicture.all
   end
 
