@@ -14,15 +14,6 @@ document.addEventListener('DOMContentLoaded' , function(){
     });
   }
 
-  var submitbtn = document.querySelectorAll('.btn-default');
-    submitbtn.addEventListener('click', function(e){
-    var entryfild = document.querySelector('content')
-     if (entryfild) = ""{
-       alert("Entry field can not be empity");
-     });
-}
-
-
   // This bring the list of pictures when the user off the auto-mode
   var automoodCheckbox = document.querySelector('#entry_auto_mood');
   if (automoodCheckbox) {
@@ -35,7 +26,6 @@ document.addEventListener('DOMContentLoaded' , function(){
       }
     });
   }
-
   // adding click event for closing (x) for the manual selection of bg images
   var span = document.querySelector('#picture_container');
   // check if span exists before adding click event
@@ -44,8 +34,6 @@ document.addEventListener('DOMContentLoaded' , function(){
       picture_container.style.display = "none";
     }
   }
-
-
   //This is the background picture list and store the selected picture temporarily
   var selectedPictures = document.querySelectorAll('.selected-picture');
   selectedPictures.forEach(function(selectedPicture){
@@ -56,7 +44,6 @@ document.addEventListener('DOMContentLoaded' , function(){
       document.querySelector('#entry_bg_picture_id').value = dataId;
     });
   });
-
   // footer height if nav exists
   var nav = document.querySelector(".main-nav");
   var footer = document.querySelector("footer");

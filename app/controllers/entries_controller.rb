@@ -39,12 +39,19 @@ class EntriesController < ApplicationController
     @entry.private = params[:entry][:private]
     @entry.auto_mood = params[:entry][:auto_mood]
 
+    if @entry.title == "" || @entry.content == ""
+       # flash[:alert] = "The title and/or content can not be empity"
+     @pictures = BgPicture.all
+      return render "entries/new", notice: t('The title and/or content can not be empity')
+    end
+
     if @entry.auto_mood
       @bg_picture.image = Entry.unsplash_response(@entry.content)
       @entry.bg_picture = @bg_picture
     else
       @entry.mood = "neutral"
       @entry.bg_picture_id = params[:entry][:bg_picture_id]
+
     end
 
     if @entry.save
@@ -91,6 +98,12 @@ class EntriesController < ApplicationController
     @entry.user = current_user
     @entry.private = params[:entry][:private]
     @entry.auto_mood = params[:entry][:auto_mood]
+
+    if @entry.title == "" || @entry.content == ""
+     flash[:alert] = "The title and/or content can not be empity"
+     @pictures = BgPicture.all
+     return redirect_to "/entries/#{@entry.id}"
+    end
 
     if @entry.auto_mood
       @bg_picture.image = Entry.unsplash_response(@entry.content)
