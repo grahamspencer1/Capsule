@@ -60,11 +60,6 @@ class EntriesController < ApplicationController
     end
   end
 
-  def new
-    @entry = Entry.new
-    @pictures = BgPicture.all
-  end
-
   def destroy
     @entry = Entry.find(params[:id])
 
@@ -117,6 +112,7 @@ class EntriesController < ApplicationController
   end
 
   def edit
+    @pictures = BgPicture.all
     @entry = Entry.find(params[:id])
     today = Time.now
     today_date = today.strftime("%d %b %Y")

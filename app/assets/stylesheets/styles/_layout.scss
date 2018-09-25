@@ -12,7 +12,7 @@
   }
 
   .gradient {
-    @include linearGradient(right, #dcaedc, 0%, #d4d3dd, 100%);
+    @include linearGradient(right, #eee8f1, 0%, #d4d3dd, 100%);
   	opacity: 0.5;
   	position: absolute;
   	z-index: -3;
@@ -31,6 +31,8 @@
     background-size: cover !important;
     background-position: center center !important;
     z-index: -4;
+    -webkit-filter: grayscale(80%);
+    filter: grayscale(80%);
   }
 }
 

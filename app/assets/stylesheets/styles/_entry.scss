@@ -65,7 +65,7 @@
 .single-entry-container {
   padding: 0 10px;
   // min-height: calc(100vh - 240px);
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.4);
   min-height: 100%;
 
   @include tablet {
@@ -92,5 +92,9 @@
   .entry-content {
     white-space: pre-line;
     line-height: 1.2em;
+  }
+
+  .edit-btn{
+    svg{color: darken($brand, 35%);}
   }
 }
