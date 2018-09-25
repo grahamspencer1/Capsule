@@ -44,6 +44,7 @@ class EntriesController < ApplicationController
       @entry.bg_picture = @bg_picture
     else
       @entry.mood = "neutral"
+      @entry.bg_picture_id = params[:entry][:bg_picture_id]
     end
 
     if @entry.save
@@ -57,6 +58,11 @@ class EntriesController < ApplicationController
       flash[:alert] = "Entry not saved! Please try again"
       render "entries/new"
     end
+  end
+
+  def new
+    @entry = Entry.new
+    @pictures = BgPicture.all
   end
 
   def destroy
@@ -74,6 +80,11 @@ class EntriesController < ApplicationController
   def update
     @entry = Entry.find(params[:id])
     @bg_picture = @entry.bg_picture
+
+    if @entry.user != current_user
+      flash[:alert] = "You are not allowed to edit this entry"
+      return redirect_to root_path
+    end
 
     if @entry.user != current_user
       flash[:alert] = "You are not allowed to edit this entry"
@@ -120,4 +131,10 @@ class EntriesController < ApplicationController
       render :show
     end
   end
+
+  def random
+    @entry = Entry.where(private: false).order("RANDOM()").first
+    redirect_to entry_path(@entry)
+  end
+
 end
