@@ -14,6 +14,15 @@ document.addEventListener('DOMContentLoaded' , function(){
     });
   }
 
+  var submitbtn = document.querySelectorAll('.btn-default');
+    submitbtn.addEventListener('click', function(e){
+    var entryfild = document.querySelector('content')
+     if (entryfild) = ""{
+       alert("Entry field can not be empity");
+     });
+}
+
+
   // This bring the list of pictures when the user off the auto-mode
   var automoodCheckbox = document.querySelector('#entry_auto_mood');
   if (automoodCheckbox) {
