@@ -10,7 +10,11 @@ class User < ApplicationRecord
 
   def self.next_entry(current_entry, entries)
     current_index = entries.index(current_entry)
-    next_entry = entries[current_index + 1]
+    if current_index == (entries.length-1)
+      next_entry = entries.first
+    else
+      next_entry = entries[current_index + 1]
+    end
     return next_entry
   end
 
@@ -19,6 +23,8 @@ class User < ApplicationRecord
     previous_entry = nil
     if (current_index - 1) >= 0
       previous_entry = entries[current_index - 1]
+    elsif current_index == 0
+      previous_entry = entries.last
     end
     return previous_entry
   end
