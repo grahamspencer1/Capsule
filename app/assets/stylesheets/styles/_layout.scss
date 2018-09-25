@@ -86,7 +86,8 @@
 
 .logo-wrapper {
   place-self: center;
-  grid-column-start: 2;
+  grid-column: 1 / span 2;
+  // grid-column-start: 2;
   .logo {
     margin: 0 auto;
     display: block;
@@ -102,7 +103,7 @@
 }
 
 .current-user {
-  grid-column: 1 / span 3;
+  grid-column: 1 / span 2;
   grid-row-start: 2;
   text-align: center;
   padding: 1rem 0 0;

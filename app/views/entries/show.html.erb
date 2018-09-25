@@ -1,7 +1,21 @@
+<section class="entry-nav">
+  <% if @previous_entry %>
+    <%= link_to entry_path(@previous_entry), class: "previous-entry entry-btn" do %>
+      <i class="fas fa-angle-left"></i>
+    <% end %>
+  <% end %>
+
+  <% if @next_entry %>
+    <%= link_to entry_path(@next_entry), class: "next-entry entry-btn" do %>
+      <i class="fas fa-angle-right"></i>
+    <% end %>
+  <% end %>
+</section>
+
 <section class="single-entry-container current-entry">
   <% if current_user == @entry.user %>
     <p>
-      <%= link_to("Edit", "/entries/#{@entry.id}/edit") %>
+      <%= link_to("Edit", edit_entry_path(@entry)) %>
       |
       <%= link_to("Delete", "/entries/#{@entry.id}", method: :delete, data: {:confirm => "Are you sure you want to delete this entry?"}) %>
     </p>

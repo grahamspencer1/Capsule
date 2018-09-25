@@ -14,11 +14,11 @@
   <body class="background">
     <!-- <div class="gradient"></div> -->
     <header>
-      <% if @previous_entry %>
+      <!-- <% if @previous_entry %>
         <%= link_to entry_path(@previous_entry), class: "previous-entry entry-btn" do %>
           <i class="fas fa-angle-left"></i>
         <% end %>
-      <% end %>
+      <% end %> -->
 
       <div class="logo-wrapper">
         <% if !current_user %>
@@ -28,11 +28,34 @@
         <% end %>
       </div>
 
-      <% if @next_entry %>
+      <nav class="main-nav <%= current_user ? 'visible' : 'hidden' %>">
+        <ul>
+          <li class="nav-links">
+            <%= link_to entries_public_path do %>
+              <i class="fas fa-book-reader"></i>
+              <p>Public Entries</p>
+            <% end %>
+          </li>
+          <li class="nav-links">
+            <%= link_to new_entry_path do %>
+              <i class="fas fa-plus"></i>
+              <p>New Entry</p>
+            <% end %>
+          </li>
+          <li class="nav-links">
+            <%= link_to entries_path do %>
+              <i class="fas fa-book"></i>
+              <p>View Entries</p>
+            <% end %>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- <% if @next_entry %>
         <%= link_to entry_path(@next_entry), class: "next-entry entry-btn" do %>
           <i class="fas fa-angle-right"></i>
         <% end %>
-      <% end %>
+      <% end %> -->
 
       <div class="current-user">
         <% if current_user %>
@@ -65,7 +88,7 @@
 
       <%= yield %>
 
-      <nav class="main-nav <%= current_user ? 'visible' : 'hidden' %>">
+      <!-- <nav class="main-nav <%= current_user ? 'visible' : 'hidden' %>">
         <ul>
           <li class="nav-links">
             <%= link_to entries_public_path do %>
@@ -86,7 +109,7 @@
             <% end %>
           </li>
         </ul>
-      </nav>
+      </nav> -->
     </main>
 
     <footer>
