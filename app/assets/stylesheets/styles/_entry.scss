@@ -95,6 +95,12 @@
   }
 
   .edit-btn{
-    svg{color: darken($brand, 35%);}
+    svg{color: darken($brand, 35%);
+    }
+  }
+
+  .delete-btn{
+    svg{color: darken($brand, 35%);
+    }
   }
 }
