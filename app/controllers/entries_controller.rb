@@ -33,6 +33,9 @@ class EntriesController < ApplicationController
   def create
     @entry = Entry.new
     @bg_picture = BgPicture.new
+
+    @entry.image.attach(params[:entry][:image])
+
     @entry.title = params[:entry][:title]
     @entry.content = params[:entry][:content]
     @entry.user = current_user
