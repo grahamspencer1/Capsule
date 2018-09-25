@@ -57,4 +57,5 @@ document.addEventListener('DOMContentLoaded' , function(){
   } else {
     footer.classList.remove("nav-mod");
   }
+
 });
