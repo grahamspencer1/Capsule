@@ -115,7 +115,7 @@ class EntriesController < ApplicationController
   def edit
     @entry = Entry.find(params[:id])
     @pictures = BgPicture.all
-    @bg_picture = BgPicture.new
+    # @bg_picture = BgPicture.new
     today = Time.now
     today_date = today.strftime("%d %b %Y")
 
