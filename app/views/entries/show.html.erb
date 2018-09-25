@@ -1,31 +1,27 @@
-<section class="entry-nav">
-  <% if @previous_entry %>
-    <%= link_to entry_path(@previous_entry), class: "previous-entry entry-btn" do %>
-      <i class="fas fa-angle-left"></i>
-    <% end %>
-  <% end %>
-
-  <% if @next_entry %>
-    <%= link_to entry_path(@next_entry), class: "next-entry entry-btn" do %>
-      <i class="fas fa-angle-right"></i>
-    <% end %>
-  <% end %>
-</section>
-
 <section class="single-entry-container current-entry">
-  <% if current_user == @entry.user %>
-    <p>
-      <%= link_to edit_entry_path(@entry), class: "edit-btn" do %>
-        <i class="far fa-edit fa-xs"></i>
-        <span>Edit</span>
-      <% end %>|
-
-      <%= link_to entry_path(@entry), class: "delete-btn", method: :delete, data: {:confirm => "Are you sure you want to delete this entry?"} do %>
-          <i class="far fa-trash-alt fa-xs delete-btn"></i>
-        <span>Delete</span>
+  <section class="entry-nav">
+    <!-- <% if @previous_entry %> -->
+      <%= link_to entry_path(@previous_entry), class: "previous-entry entry-btn" do %>
+        <i class="fas fa-angle-left"></i>
       <% end %>
-    </p>
-  <% end %>
+    <!-- <% end %> -->
+
+    <%= link_to edit_entry_path(@entry), class: "edit-btn entry-btn" do %>
+      <i class="fas fa-edit"></i>
+      <span>Edit</span>
+    <% end %>
+
+    <%= link_to entry_path(@entry), class: "delete-btn entry-btn", method: :delete, data: {:confirm => "Are you sure you want to delete this entry?"} do %>
+        <i class="fas fa-trash-alt"></i>
+      <span>Delete</span>
+    <% end %>
+
+    <!-- <% if @next_entry %> -->
+      <%= link_to entry_path(@next_entry), class: "next-entry entry-btn" do %>
+        <i class="fas fa-angle-right"></i>
+      <% end %>
+    <!-- <% end %> -->
+  </section>
 
   <div class="entry-title-wrapper">
     <h1><%= @entry.title %></h1>
