@@ -40,9 +40,9 @@ class EntriesController < ApplicationController
     @entry.auto_mood = params[:entry][:auto_mood]
 
     if @entry.title == "" || @entry.content == ""
-       # flash[:alert] = "The title and/or content can not be empity"
-     @pictures = BgPicture.all
-      return render "entries/new", notice: t('The title and/or content can not be empity')
+      flash[:alert] = "The title and/or content can not be empity"
+      @pictures = BgPicture.all
+      return render "entries/new"
     end
 
     if @entry.auto_mood
