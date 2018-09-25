@@ -26,7 +26,7 @@ class EntriesController < ApplicationController
 
   def new
     @entry = Entry.new
-    @bg_picture = BgPicture.new
+    # @bg_picture = BgPicture.new
     @pictures = BgPicture.all
   end
 
@@ -97,6 +97,7 @@ class EntriesController < ApplicationController
       @entry.bg_picture = @bg_picture
     else
       @entry.mood = "neutral"
+      @entry.bg_picture_id = params[:entry][:bg_picture_id]
     end
 
     if @entry.save
@@ -112,8 +113,9 @@ class EntriesController < ApplicationController
   end
 
   def edit
-    @pictures = BgPicture.all
     @entry = Entry.find(params[:id])
+    @pictures = BgPicture.all
+    @bg_picture = BgPicture.new
     today = Time.now
     today_date = today.strftime("%d %b %Y")
 
