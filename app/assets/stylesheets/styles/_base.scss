@@ -84,7 +84,7 @@ p {
 
 a, a:visited {
   text-decoration: none;
-  color: $brand;
+  color: darken($brand, 35%);
 }
 
 a:hover, a:focus, a:active {
