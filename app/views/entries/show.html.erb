@@ -1,18 +1,11 @@
 <section class="single-entry-container current-entry">
-  <p>
-    <%= link_to("Edit", "/entries/#{@entry.id}/edit") %>
-    |
-    <%= link_to("Delete", "/entries/#{@entry.id}", method: :delete, data: {:confirm => "Are you sure you want to delete this entry?"}) %>
-  </p>
-
-  <% if @previous_entry %>
-
-  <%= button_to "NEXT", entry_path(@previous_entry), class: 'previous_entry', method: :get %>
+  <% if current_user == @entry.user %>
+    <p>
+      <%= link_to("Edit", "/entries/#{@entry.id}/edit") %>
+      |
+      <%= link_to("Delete", "/entries/#{@entry.id}", method: :delete, data: {:confirm => "Are you sure you want to delete this entry?"}) %>
+    </p>
   <% end %>
-
-  <% if @next_entry %>
-  <%= button_to "PREV", entry_path(@next_entry), class: 'next_entry', method: :get %>
-    <% end %>
 
   <div class="entry-title-wrapper">
     <h1><%= @entry.title %></h1>
@@ -21,3 +14,5 @@
 
   <p class="entry-content"><%= @entry.content %></p>
 </section>
+
+<div class="bg2" style="background: url('<%= image_path(@entry.bg_picture.image) %>')"></div>

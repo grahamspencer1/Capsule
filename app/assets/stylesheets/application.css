@@ -2,3 +2,8 @@
  *= require_self
  *= require main
 */
+
+#close {
+  font-weight: bold;
+  cursor: pointer;
+}

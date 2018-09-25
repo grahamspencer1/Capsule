@@ -1,18 +1,9 @@
-<<<<<<< HEAD
-<h1>This is the public page</h1>
- <% Entry.where(private: false).each do |entry| %>
- <pre> <%= entry.content %> </pre>
- <% end %>
-=======
-<br>
-<h1>Public Entries</h1>
-
 <% Entry.where(private: false).each do |entry| %>
-    <p>
-    <%= entry.title %>
-    <br>
-    <%= entry.content %>
-    </p>
-    <hr>
+  <section class="single-entry-container">
+    <div class="entry-title-wrapper">
+        <h1><%= entry.title %></h1>
+        <h3><%= entry.created_at.strftime("%b/%d/%Y") %></h3>
+    </div>
+    <p class="entry-content"><%= entry.content %></p>
+  </section>
 <% end %>
->>>>>>> 7bdb4e68b02acd2b1272e7f8a8b64c54eb239398

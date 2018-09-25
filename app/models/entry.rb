@@ -1,5 +1,5 @@
 class Entry < ApplicationRecord
-  # before_validation :sentiment_response
+  before_validation :sentiment_response
   belongs_to :user
   belongs_to :bg_picture
 
@@ -12,10 +12,10 @@ class Entry < ApplicationRecord
   end
 
   def self.entry_search(current_user, date)
-    current_user.entries.where("created_at >= ? ", date)
+    current_user.entries.where("created_at >= ? ", date).order('id desc')
   end
 
-  def self.sentiment_response(content)
+  def sentiment_response
     query = {"text" => "#{content}"}
     headers = {
       "X-Mashape-Key" => "#{ENV["SENTIMENT_KEY"]}",
@@ -28,6 +28,13 @@ class Entry < ApplicationRecord
       :headers => headers
     )
 
-    mood = response["type"]
+    return self.mood = response["type"]
+  end
+
+  def self.unsplash_response(keyword)
+    keyword = keyword.split.max_by{|word| word.length}
+    response = HTTParty.get("https://api.unsplash.com/search/photos?client_id=#{ENV["UNSPLASH_KEY"]}&query=#{keyword}")
+    response_json = JSON.parse(response.body)
+    return response_json["results"].sample["urls"]["regular"]
   end
 end
