@@ -1,4 +1,5 @@
 <section class="form-wrapper wrapper">
+
   <%= form_for @entry, html: {class: 'form'} do |f| %>
     <% if @entry.errors.any? %>
       <div class="error-explanation">
@@ -11,6 +12,7 @@
       </div>
     <% end %>
 
+
     <div class="field">
       <%= f.label :title %>
       <%= f.text_field :title, placeholder: 'How\'s it going?'%>
@@ -20,6 +22,8 @@
       <%= f.label :content %>
       <%= f.text_area :content, placeholder: "Write an entry here" %>
     </div>
+
+
 
     <div class="field check-box-wrapper">
       <%= f.label 'Set this post to private?' %>
@@ -41,6 +45,7 @@
       <%= f.number_field :bg_picture_id  %>
     </div>
 
+
     <div id="picture_container" class="picture_container">
       <div class="pictures_content">
         <span class="close-link">&times;</span>
@@ -49,5 +54,9 @@
       </div>
     </div>
 
+
+
   <% end %>
+
+
 </section>

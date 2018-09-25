@@ -1,11 +1,25 @@
 <section class="entry-form-page">
+
+
   <section class="entry-back">
+
     <%= link_to root_path, class: "entry-btn" do %>
       <i class="fas fa-angle-left"></i>
-    <% end %>
-  </section>
 
+    <% end %>
+
+
+  </section>
   <h1>Create a New Entry</h1>
 </section>
+
+<br><br>
+  <%= form_with model: @entry, local: true do |f| %>
+    <span>
+      <% f.text_field :content  %>
+      <%= f.file_field :image  %>
+      <%= f.submit 'Upload Your Image!', class: 'btn-default'%>
+    </span>
+  <% end %>
 
   <%= render 'form' %>
