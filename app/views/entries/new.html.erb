@@ -1,2 +1,11 @@
-<h1>Create a New Entry</h1>
-<%= render 'form' %>
+<section class="entry-form-page">
+  <section class="entry-back">
+    <%= link_to root_path, class: "entry-btn" do %>
+      <i class="fas fa-angle-left"></i>
+    <% end %>
+  </section>
+
+  <h1>Create a New Entry</h1>
+</section>
+
+  <%= render 'form' %>

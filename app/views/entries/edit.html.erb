@@ -1,5 +1,11 @@
-<!-- <%= link_to 'Back to All Entries', root_path %> -->
+<section class="entry-form-page">
+  <section class="entry-back">
+    <%= link_to entry_path(@entry), class: "previous-entry entry-btn" do %>
+      <i class="fas fa-angle-left"></i>
+    <% end %>
+  </section>
 
-<h1>Edit Your Entry</h1>
+  <h1>Edit Your Entry</h1>
+</section>
 
 <%= render 'form' %>

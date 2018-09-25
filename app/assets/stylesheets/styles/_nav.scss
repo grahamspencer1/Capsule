@@ -1,5 +1,6 @@
 .main-nav {
   position: fixed;
+  z-index: 1;
   bottom: 0;
   width: 100%;
   left: 0;
@@ -53,7 +54,8 @@
 }
 
 .entry-nav {
-  border: 1px solid black;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .entry-btn {
@@ -62,5 +64,28 @@
   svg {
     font-size: 2.2em;
     margin: 1rem auto;
+  }
+}
+
+.edit-btn, .delete-btn {
+  svg {
+    font-size: 2em;
+  }
+
+  span {
+    display: none;
+  }
+}
+
+.entry-form-page {
+  margin: 0 auto;
+
+  h1, .entry-back {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .entry-back {
+    margin-right: 2rem;
   }
 }
