@@ -35,13 +35,19 @@
       <%= f.submit class: 'btn-default' %>
     </div>
 
-    <div id="picture_container" class="picture_container">
-    <div class="pictures_content">
-      <span class="pictures">&times;</span>
-      <p>List of pictures</p>
-         
+    <div id="picture_preview" class="picture_preview">
+      <%= f.label 'selected Picture' %>
+      <%= image_tag "" %>
+      <%= f.number_field :bg_picture_id  %>
     </div>
 
-  </div>
+    <div id="picture_container" class="picture_container">
+      <div class="pictures_content">
+        <span class="close-link">&times;</span>
+        <p>List of pictures</p>
+        <%= render partial: "bg_pictures/gallery", locals: {pictures: @pictures} %>
+      </div>
+    </div>
 
   <% end %>
+</section>

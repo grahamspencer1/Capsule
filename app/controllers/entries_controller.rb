@@ -11,13 +11,16 @@ class EntriesController < ApplicationController
 
   def show
     @entry = Entry.find(params[:id])
-     if @entry
-       @entries = current_user.entries.reverse
+    @entries = current_user.entries.reverse
 
-       if @entries.length > 1
-         @next_entry = User.next_entry(@entry, @entries)
-         @previous_entry = User.previous_entry(@entry, @entries)
-      end
+    if @entry.private && @entry.user != current_user
+      flash[:alert] = "You are not allowed to view this entry"
+      redirect_to root_path
+    end
+
+    if @entries.length > 1
+      @next_entry = User.next_entry(@entry, @entries)
+      @previous_entry = User.previous_entry(@entry, @entries)
     end
   end
 
@@ -31,16 +34,15 @@ class EntriesController < ApplicationController
     @entry.content = params[:entry][:content]
     @entry.user = current_user
     @entry.private = params[:entry][:private]
-    @entry.bg_picture_id = 1
+    # @entry.bg_picture = BgPicture.first
+    # @entry.bg_picture_id = params[:entry][:bg_picture_id]
     @entry.auto_mood = params[:entry][:auto_mood]
 
     if @entry.auto_mood
-      p "hello:::::::::::::::#{@entry.auto_mood}"
-      # @entry.auto_mood = true
       @entry.mood = Entry.sentiment_response(@entry.content)
     else
-      # @entry.auto_mood = false
       @entry.mood = "neutral"
+      @entry.bg_picture_id = params[:entry][:bg_picture_id]
     end
 
     if @entry.save
@@ -54,10 +56,17 @@ class EntriesController < ApplicationController
 
   def new
     @entry = Entry.new
+    @pictures = BgPicture.all
   end
 
   def destroy
     @entry = Entry.find(params[:id])
+
+    if @entry.user != current_user
+      flash[:alert] = "You are not allowed to delete this entry"
+      return redirect_to root_path
+    end
+
     @entry.destroy
     redirect_to "/entries"
   end
@@ -65,19 +74,22 @@ class EntriesController < ApplicationController
   def update
     @entry = Entry.find(params[:id])
 
+    if @entry.user != current_user
+      flash[:alert] = "You are not allowed to edit this entry"
+      return redirect_to root_path
+    end
+
     @entry.title = params[:entry][:title]
     @entry.content = params[:entry][:content]
     @entry.user = current_user
     @entry.private = params[:entry][:private]
     @entry.auto_mood = params[:entry][:auto_mood]
 
-    @entry.bg_picture_id = 1
+    @entry.bg_picture = BgPicture.first
 
     if @entry.auto_mood
-      # @entry.auto_mood = true
       @entry.mood = Entry.sentiment_response(@entry.content)
     else
-      # @entry.auto_mood = false
       @entry.mood = "neutral"
     end
 
@@ -93,9 +105,21 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
     today = Time.now
     today_date = today.strftime("%d %b %Y")
+
+    if @entry.user != current_user
+      flash[:alert] = "You are not allowed to edit this entry"
+      return redirect_to root_path
+    end
+
     if @entry.created_at < today_date
       flash.now[:alert] = "Entries cannot be edited beyond the day they were made - Learn to appreciate how you felt this day!"
       render :show
     end
   end
+
+  def random
+    @entry = Entry.where(private: false).order("RANDOM()").first
+    redirect_to entry_path(@entry)
+  end
+
 end
