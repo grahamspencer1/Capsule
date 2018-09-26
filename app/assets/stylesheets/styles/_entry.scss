@@ -65,8 +65,6 @@
 .single-entry-container {
   padding: 0 10px;
   // min-height: calc(100vh - 240px);
-  background: rgba(255, 255, 255, 0.4);
-  min-height: 100%;
 
   @include tablet {
     margin: 0 auto;
@@ -92,5 +90,18 @@
   .entry-content {
     white-space: pre-line;
     line-height: 1.2em;
+  }
+}
+
+.current-entry {
+  background: rgba(255, 255, 255, 0.4);
+  min-height: 100%;
+}
+
+.public {
+  margin: 1.6em auto;
+
+  h1 {
+    text-align: left;
   }
 }

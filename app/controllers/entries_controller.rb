@@ -26,7 +26,7 @@ class EntriesController < ApplicationController
 
   def new
     @entry = Entry.new
-    # @bg_picture = BgPicture.new
+    @bg_picture = BgPicture.new
     @pictures = BgPicture.all
   end
 
@@ -95,6 +95,7 @@ class EntriesController < ApplicationController
     if @entry.auto_mood
       @bg_picture.image = Entry.unsplash_response(@entry.content)
       @entry.bg_picture = @bg_picture
+      @entry.bg_picture = BgPicture.first
     else
       @entry.mood = "neutral"
       @entry.bg_picture_id = params[:entry][:bg_picture_id]
@@ -115,7 +116,7 @@ class EntriesController < ApplicationController
   def edit
     @entry = Entry.find(params[:id])
     @pictures = BgPicture.all
-    # @bg_picture = BgPicture.new
+    @bg_picture = BgPicture.new
     today = Time.now
     today_date = today.strftime("%d %b %Y")
 
@@ -130,9 +131,7 @@ class EntriesController < ApplicationController
     end
   end
 
-  def random
-    @entry = Entry.where(private: false).order("RANDOM()").first
-    redirect_to entry_path(@entry)
+  def public
+    @public_entries = Entry.where(private: false).shuffle
   end
-
 end
