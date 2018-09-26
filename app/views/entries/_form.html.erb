@@ -1,5 +1,4 @@
 <section class="form-wrapper wrapper">
-
   <%= form_for @entry, html: {class: 'form'} do |f| %>
     <% if @entry.errors.any? %>
       <div class="error-explanation">
@@ -12,18 +11,15 @@
       </div>
     <% end %>
 
-
     <div class="field">
       <%= f.label :title %>
-      <%= f.text_field :title, placeholder: 'How\'s it going?'%>
+      <%= f.text_field :title, placeholder: 'How\'s it going?' %>
     </div>
 
     <div class="field">
       <%= f.label :content %>
       <%= f.text_area :content, placeholder: "Write an entry here" %>
     </div>
-
-
 
     <div class="field check-box-wrapper">
       <%= f.label 'Set this post to private?' %>
@@ -35,16 +31,11 @@
       <%= f.check_box :auto_mood, {checked: @entry.auto_mood}, 'true', 'false' %>
     </div>
 
-    <div class="field">
-      <%= f.submit class: 'btn-default' %>
-    </div>
-
     <div id="picture_preview" class="picture_preview">
       <%= f.label 'selected Picture' %>
       <%= image_tag "" %>
       <%= f.number_field :bg_picture_id  %>
     </div>
-
 
     <div id="picture_container" class="picture_container">
       <div class="pictures_content">
@@ -54,9 +45,14 @@
       </div>
     </div>
 
+    <div class="field">
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+    </div>
 
+    <div class="field">
+      <%= f.submit class: 'btn-default' %>
+    </div>
 
   <% end %>
-
-
 </section>
