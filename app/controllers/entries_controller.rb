@@ -48,7 +48,11 @@ class EntriesController < ApplicationController
       end
     else
       @entry.mood = "neutral"
-      @entry.bg_picture_id = params[:entry][:bg_picture_id]
+      if @entry.content.length >= 3
+        @entry.bg_picture_id = params[:entry][:bg_picture_id]
+      else
+        @pictures = BgPicture.all
+  ``  end
     end
 
     if @entry.save
@@ -106,7 +110,11 @@ class EntriesController < ApplicationController
       end
     else
       @entry.mood = "neutral"
-      @entry.bg_picture_id = params[:entry][:bg_picture_id]
+      if @entry.content.length >= 3
+        @entry.bg_picture_id = params[:entry][:bg_picture_id]
+      else
+        @pictures = BgPicture.all
+      end
     end
 
     if @entry.save
