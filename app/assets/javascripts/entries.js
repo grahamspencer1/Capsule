@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded' , function(){
     }
   }
 
-
   //This is the background picture list and store the selected picture temporarily
   var selectedPictures = document.querySelectorAll('.selected-picture');
   selectedPictures.forEach(function(selectedPicture){
@@ -58,4 +57,7 @@ document.addEventListener('DOMContentLoaded' , function(){
     footer.classList.remove("nav-mod");
   }
 
+  if (nav && window.innerWidth > 1024) {
+    footer.classList.remove("nav-mod");
+  }
 });

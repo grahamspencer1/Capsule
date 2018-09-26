@@ -90,7 +90,12 @@
 .logo-wrapper {
   place-self: center;
   grid-column: 1 / span 2;
-  // grid-column-start: 2;
+
+  @include desktop {
+    grid-column: 1;
+    place-self: center end;
+  }
+
   .logo {
     margin: 0 auto;
     display: block;
@@ -102,6 +107,7 @@
   .splash {
     margin: 0 auto;
     display: block;
+    width: 180px;
   }
 }
 
