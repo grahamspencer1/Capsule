@@ -58,7 +58,11 @@ class EntriesController < ApplicationController
         @entry.bg_picture_id = params[:entry][:bg_picture_id]
       else
         @pictures = BgPicture.all
+
      end
+
+  end
+
 
     if @entry.save! params.require(:entry).permit(:image)
       @entry.image.attach(params[:entry][:image])
