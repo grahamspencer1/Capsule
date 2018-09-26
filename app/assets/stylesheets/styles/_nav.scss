@@ -6,17 +6,42 @@
   left: 0;
   @include linearGradient(left, #dcaedc, 0%, #d4d3dd, 100%);
 
+  @include desktop {
+    position: relative;
+    background: none;
+    grid-column: 2;
+  }
+
   ul {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
-    // border-top: 1px solid $brand;
+
+    @include desktop {
+      grid-template-columns: repeat(3, auto);
+      justify-content: center;
+      grid-gap: 6rem;
+    }
+
   }
 
   .nav-links {
     border-right: 1px solid $brand;
     place-self: stretch;
     padding: 1rem 0;
+
+    @include desktop {
+      border: none;
+
+      svg, p {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      p {
+        padding-left: 20px;
+      }
+    }
 
     &:last-child {
       border: none;

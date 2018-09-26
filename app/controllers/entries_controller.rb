@@ -26,7 +26,7 @@ class EntriesController < ApplicationController
 
   def new
     @entry = Entry.new
-    # @bg_picture = BgPicture.new
+    @bg_picture = BgPicture.new
     @pictures = BgPicture.all
   end
 
@@ -45,16 +45,23 @@ class EntriesController < ApplicationController
     if @entry.title == "" || @entry.content == ""
       flash[:alert] = "The title and/or content can not be empity"
       @pictures = BgPicture.all
-      return render "entries/new"
+      return redirect_to "/entries/new"
     end
 
     if @entry.auto_mood
-      @bg_picture.image = Entry.unsplash_response(@entry.content)
-      @entry.bg_picture = @bg_picture
+      if @entry.content.length >= 3
+        @bg_picture.image = Entry.unsplash_response(@entry.content)
+        @entry.bg_picture = @bg_picture
+      else
+        @pictures = BgPicture.all
+      end
     else
       @entry.mood = "neutral"
-      @entry.bg_picture_id = params[:entry][:bg_picture_id]
-
+    if @entry.content.length >= 3
+        @entry.bg_picture_id = params[:entry][:bg_picture_id]
+      else
+        @pictures = BgPicture.all
+     end
     end
 
     if @entry.save
@@ -109,11 +116,20 @@ class EntriesController < ApplicationController
     end
 
     if @entry.auto_mood
-      @bg_picture.image = Entry.unsplash_response(@entry.content)
-      @entry.bg_picture = @bg_picture
+      if @entry.content.length >= 3
+        @bg_picture = BgPicture.new
+        @bg_picture.image = Entry.unsplash_response(@entry.content)
+        @entry.bg_picture = @bg_picture
+      else
+        @pictures = BgPicture.all
+      end
     else
       @entry.mood = "neutral"
-      @entry.bg_picture_id = params[:entry][:bg_picture_id]
+      if @entry.content.length >= 3
+        @entry.bg_picture_id = params[:entry][:bg_picture_id]
+      else
+        @pictures = BgPicture.all
+      end
     end
 
     if @entry.save
@@ -131,7 +147,7 @@ class EntriesController < ApplicationController
   def edit
     @entry = Entry.find(params[:id])
     @pictures = BgPicture.all
-    # @bg_picture = BgPicture.new
+    @bg_picture = BgPicture.new
     today = Time.now
     today_date = today.strftime("%d %b %Y")
 
@@ -146,9 +162,7 @@ class EntriesController < ApplicationController
     end
   end
 
-  def random
-    @entry = Entry.where(private: false).order("RANDOM()").first
-    redirect_to entry_path(@entry)
+  def public
+    @public_entries = Entry.where(private: false).shuffle
   end
-
 end

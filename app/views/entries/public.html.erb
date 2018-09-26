@@ -1,9 +1,6 @@
-<% Entry.where(private: false).each do |entry| %>
-  <section class="single-entry-container">
-    <div class="entry-title-wrapper">
-        <h1><%= entry.title %></h1>
-        <h3><%= entry.created_at.strftime("%b/%d/%Y") %></h3>
-    </div>
+<% @public_entries.each do |entry| %>
+  <section class="single-entry-container public">
+    <h1><%= entry.title %></h1>
     <p class="entry-content"><%= entry.content %></p>
   </section>
 <% end %>

@@ -4,9 +4,13 @@
   grid-gap: 1rem;
 
   @include tablet {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 4rem;
     margin: 2rem auto;
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(5, 1fr);
   }
 
   .entry {
@@ -65,8 +69,6 @@
 .single-entry-container {
   padding: 0 10px;
   // min-height: calc(100vh - 240px);
-  background: rgba(255, 255, 255, 0.4);
-  min-height: 100%;
 
   @include tablet {
     margin: 0 auto;
@@ -92,5 +94,18 @@
   .entry-content {
     white-space: pre-line;
     line-height: 1.2em;
+  }
+}
+
+.current-entry {
+  background: rgba(255, 255, 255, 0.4);
+  min-height: 100%;
+}
+
+.public {
+  margin: 1.6em auto;
+
+  h1 {
+    text-align: left;
   }
 }

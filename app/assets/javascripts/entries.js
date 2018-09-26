@@ -54,4 +54,7 @@ document.addEventListener('DOMContentLoaded' , function(){
     footer.classList.remove("nav-mod");
   }
 
+  if (nav && window.innerWidth > 1024) {
+    footer.classList.remove("nav-mod");
+  }
 });
