@@ -50,7 +50,8 @@ class EntriesController < ApplicationController
     else
       @entry.mood = "neutral"
       if @entry.content.length >= 3
-        @entry.bg_picture_id = params[:entry][:bg_picture_id]
+        @bg_picture = BgPicture.find(params[:entry][:bg_picture_id])
+        @entry.bg_picture = @bg_picture
       else
         @pictures = BgPicture.all
       end
