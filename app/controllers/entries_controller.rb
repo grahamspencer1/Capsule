@@ -33,9 +33,6 @@ class EntriesController < ApplicationController
   def create
     @entry = Entry.new
     @bg_picture = BgPicture.new
-
-    @entry.image.attach(params[:entry][:image])
-
     @entry.title = params[:entry][:title]
     @entry.content = params[:entry][:content]
     @entry.user = current_user
@@ -62,9 +59,9 @@ class EntriesController < ApplicationController
       else
         @pictures = BgPicture.all
      end
-    end
 
-    if @entry.save
+    if @entry.save! params.require(:entry).permit(:image)
+      @entry.image.attach(params[:entry][:image])
       if @entry.mood
         @bg_picture.mood = @entry.mood
         @bg_picture.save
@@ -132,7 +129,8 @@ class EntriesController < ApplicationController
       end
     end
 
-    if @entry.save
+    if @entry.save! params.require(:entry).permit(:image)
+      @entry.image.attach(params[:entry][:image])
       if @entry.mood
         @bg_picture.mood = @entry.mood
         @bg_picture.save
