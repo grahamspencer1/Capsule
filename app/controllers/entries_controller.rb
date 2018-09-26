@@ -40,8 +40,12 @@ class EntriesController < ApplicationController
     @entry.auto_mood = params[:entry][:auto_mood]
 
     if @entry.auto_mood
-      @bg_picture.image = Entry.unsplash_response(@entry.content)
-      @entry.bg_picture = @bg_picture
+      if @entry.content.length >= 3
+        @bg_picture.image = Entry.unsplash_response(@entry.content)
+        @entry.bg_picture = @bg_picture
+      else
+        @pictures = BgPicture.all
+      end
     else
       @entry.mood = "neutral"
       @entry.bg_picture_id = params[:entry][:bg_picture_id]
@@ -93,9 +97,13 @@ class EntriesController < ApplicationController
     @entry.auto_mood = params[:entry][:auto_mood]
 
     if @entry.auto_mood
-      @bg_picture.image = Entry.unsplash_response(@entry.content)
-      @entry.bg_picture = @bg_picture
-      @entry.bg_picture = BgPicture.first
+      if @entry.content.length >= 3
+        @bg_picture = BgPicture.new
+        @bg_picture.image = Entry.unsplash_response(@entry.content)
+        @entry.bg_picture = @bg_picture
+      else
+        @pictures = BgPicture.all
+      end
     else
       @entry.mood = "neutral"
       @entry.bg_picture_id = params[:entry][:bg_picture_id]

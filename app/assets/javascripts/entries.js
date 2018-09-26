@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded' , function(){
     }
   }
 
-
   //This is the background picture list and store the selected picture temporarily
   var selectedPictures = document.querySelectorAll('.selected-picture');
   selectedPictures.forEach(function(selectedPicture){
