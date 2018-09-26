@@ -4,9 +4,13 @@
   grid-gap: 1rem;
 
   @include tablet {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 4rem;
     margin: 2rem auto;
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(5, 1fr);
   }
 
   .entry {
