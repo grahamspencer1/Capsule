@@ -41,6 +41,7 @@ class EntriesController < ApplicationController
 
     if @entry.auto_mood
       if @entry.content.length >= 3
+        @entry.mood = Entry.sentiment_response(@entry.content)
         @bg_picture.image = Entry.unsplash_response(@entry.content)
         @entry.bg_picture = @bg_picture
       else
@@ -55,7 +56,7 @@ class EntriesController < ApplicationController
       end
     end
 
-    if @entry.save! params.require(:entry).permit(:image)
+    if @entry.save params.require(:entry).permit(:image)
       @entry.image.attach(params[:entry][:image])
       if @entry.mood
         @bg_picture.mood = @entry.mood
@@ -100,10 +101,12 @@ class EntriesController < ApplicationController
     @entry.user = current_user
     @entry.private = params[:entry][:private]
     @entry.auto_mood = params[:entry][:auto_mood]
+    # @entry.image = params[:entry][:image]
 
     if @entry.auto_mood
       if @entry.content.length >= 3
         @bg_picture = BgPicture.new
+        @entry.mood = Entry.sentiment_response(@entry.content)
         @bg_picture.image = Entry.unsplash_response(@entry.content)
         @entry.bg_picture = @bg_picture
       else
@@ -118,7 +121,7 @@ class EntriesController < ApplicationController
       end
     end
 
-    if @entry.save! params.require(:entry).permit(:image)
+    if @entry.save params.require(:entry).permit(:image)
       @entry.image.attach(params[:entry][:image])
       if @entry.mood
         @bg_picture.mood = @entry.mood
