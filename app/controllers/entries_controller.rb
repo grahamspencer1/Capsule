@@ -38,6 +38,7 @@ class EntriesController < ApplicationController
     @entry.user = current_user
     @entry.private = params[:entry][:private]
     @entry.auto_mood = params[:entry][:auto_mood]
+    @entry.image.attach(params[:entry][:image])
 
     if @entry.auto_mood
       if @entry.content.length >= 3
@@ -45,6 +46,7 @@ class EntriesController < ApplicationController
         @bg_picture.image = Entry.unsplash_response(@entry.content)
         @entry.bg_picture = @bg_picture
       else
+      @entry.image.attach(params[:entry][:image])
         @pictures = BgPicture.all
       end
     else
@@ -57,8 +59,7 @@ class EntriesController < ApplicationController
       end
     end
 
-    if @entry.save params.require(:entry).permit(:image)
-      @entry.image.attach(params[:entry][:image])
+    if @entry.save
       if @entry.mood
         @bg_picture.mood = @entry.mood
         @bg_picture.save
@@ -102,7 +103,6 @@ class EntriesController < ApplicationController
     @entry.user = current_user
     @entry.private = params[:entry][:private]
     @entry.auto_mood = params[:entry][:auto_mood]
-    # @entry.image = params[:entry][:image]
 
     if @entry.auto_mood
       if @entry.content.length >= 3
@@ -116,14 +116,19 @@ class EntriesController < ApplicationController
     else
       @entry.mood = "neutral"
       if @entry.content.length >= 3
-        @entry.bg_picture_id = params[:entry][:bg_picture_id]
+        @bg_picture = BgPicture.find(params[:entry][:bg_picture_id])
+        @entry.bg_picture = @bg_picture
       else
         @pictures = BgPicture.all
       end
     end
 
-    if @entry.save params.require(:entry).permit(:image)
+    if params[:entry][:image] != nil
       @entry.image.attach(params[:entry][:image])
+      # params.require(:entry).permit(:image)
+    end
+
+    if @entry.save
       if @entry.mood
         @bg_picture.mood = @entry.mood
         @bg_picture.save
