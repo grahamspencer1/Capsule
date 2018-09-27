@@ -14,6 +14,7 @@
           <div class="picture-container picture" style="background: url('<%= image_path(entry.bg_picture.image) %>')"></div>
           <div class="entry-title-wrapper">
             <h2 class="entry-title"><%= entry.title %></h2>
+            <%= entry.mood %><br><%= entry.bg_picture.mood %>
             <time class="entry-date"><%= entry.created_at.strftime("%b/%d/%Y") %></time>
           </div>
         </div>
