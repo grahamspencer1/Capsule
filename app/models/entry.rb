@@ -6,9 +6,10 @@ class Entry < ApplicationRecord
 
   validates :title, length: { minimum: 3, maximum: 50 }, presence: true
   validates :content, length: { minimum: 3, maximum: 1500 }, presence: true
+  validate :check_image_file_type
 
-  def self.last_five_entry(current_user)
-    result = current_user.entries.order('id desc').limit(5)
+  def self.recent_entries(current_user)
+    result = current_user.entries.order('id desc').limit(10)
     return result
   end
 
@@ -41,6 +42,15 @@ class Entry < ApplicationRecord
       return response_json["results"].sample["urls"]["regular"]
     else
       return "jess-watters-684713-unsplash.jpg"
+    end
+  end
+
+  private
+
+  def check_image_file_type
+    if image.attached? && !image.blob.content_type.in?(%w(image/png image/jpeg image/gif))
+      image.purge
+      errors.add(:image, "Must be a JPEG, PNG, or GIF")
     end
   end
 end

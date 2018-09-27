@@ -38,14 +38,16 @@ document.addEventListener('DOMContentLoaded' , function(){
 
   //This is the background picture list and store the selected picture temporarily
   var selectedPictures = document.querySelectorAll('.selected-picture');
-  selectedPictures.forEach(function(selectedPicture){
-    selectedPicture.addEventListener('click', function(event){
-      event.preventDefault();
-      document.querySelector('#picture_preview img').src = selectedPicture.src;
-      var dataId = selectedPicture.dataset.imageid;
-      document.querySelector('#entry_bg_picture_id').value = dataId;
+  if (selectedPictures) {
+    selectedPictures.forEach(function(selectedPicture){
+      selectedPicture.addEventListener('click', function(event){
+        event.preventDefault();
+        document.querySelector('#picture_preview img').src = selectedPicture.src;
+        var dataId = selectedPicture.dataset.imageid;
+        document.querySelector('#entry_bg_picture_id').value = dataId;
+      });
     });
-  });
+  }
 
   // footer height if nav exists
   var nav = document.querySelector(".main-nav");
