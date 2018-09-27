@@ -108,6 +108,7 @@
     margin: 0 auto;
     display: block;
     width: 180px;
+    filter: contrast(0%) sepia(100%) hue-rotate(250deg) brightness(0.8) saturate(0.8);
   }
 }
 
