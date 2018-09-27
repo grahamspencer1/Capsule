@@ -53,13 +53,18 @@ document.addEventListener('DOMContentLoaded' , function(){
   var nav = document.querySelector(".main-nav");
   var footer = document.querySelector("footer");
 
-  if (nav && nav.classList.contains("visible")) {
-    footer.classList.add("nav-mod");
-  } else {
-    footer.classList.remove("nav-mod");
+  var queryBigScreen = window.matchMedia("(min-width: 1025px)");
+  function footerNavQuery(query) {
+    if (nav && nav.classList.contains("visible")) {
+      if (query.matches) {
+        console.log("yes");
+        footer.classList.remove("nav-mod");
+      } else {
+        console.log("no");
+        footer.classList.add("nav-mod");
+      }
+    }
   }
-
-  if (nav && window.innerWidth > 1024) {
-    footer.classList.remove("nav-mod");
-  }
+  footerNavQuery(queryBigScreen);
+  queryBigScreen.addListener(footerNavQuery)
 });
