@@ -11,7 +11,9 @@
     <% @entries.each do |entry| %>
       <%= link_to entry_path(entry) do %>
         <div class="entry-container">
-          <div class="picture-container picture" style="background: url('<%= image_path(entry.bg_picture.image) %>')"></div>
+          <% if entry.bg_picture %>
+            <div class="picture-container picture" style="background: url('<%= image_path(entry.bg_picture.image) %>')"></div>
+          <% end %>
           <div class="entry-title-wrapper">
             <h2 class="entry-title"><%= entry.title %></h2>
             <time class="entry-date"><%= entry.created_at.strftime("%b/%d/%Y") %></time>
