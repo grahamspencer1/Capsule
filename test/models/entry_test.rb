@@ -1,9 +1,11 @@
 require 'test_helper'
+require 'pry'
 
 class EntryTest < ActiveSupport::TestCase
 
   def setup
     @user = User.create(name: "Test", email: "test@test.com", password: "testtest", password_confirmation: "testtest")
+    @user_2 = User.create(name: "Bob", email: "bob@test.com", password: "neutral123", password_confirmation: "neutral123")
     @bg_picture = BgPicture.create(mood: 'happy')
     @entry = Entry.create(title: "Test", content: "Lorem Ipsum", private: true, bg_picture_id: @bg_picture.id, user_id: @user.id, created_at: false, updated_at: false, mood: "happy", auto_mood: false)
 
@@ -65,12 +67,55 @@ class EntryTest < ActiveSupport::TestCase
     refute entry.valid?
   end
 
+  # Test works
   def test_that_sentiment_api_response_is_positive
     entry = @entryAutoMood
     entry.mood = Entry.sentiment_response(entry.content)
     entry.save
-
     assert_equal "positive", entry.mood
     assert entry.valid?
+  end
+
+  # Test works
+  def test_that_unsplash_response_is_saved_to_entry_mood_and_keyword
+    entry = @entryAutoMood
+    entry.mood = "positive"
+    entry.bg_picture.image = Entry.unsplash_response(entry.content, entry.mood)
+    entry.save
+    assert entry.valid?
+  end
+
+  # Test works
+  def test_auto_mood_off_and_unsplash_response_not_called
+    entry = @entryAutoMood
+    entry.mood = "neutral"
+    entry.bg_picture = BgPicture.first
+    entry.save
+    assert entry.valid?
+  end
+
+  # Test works
+  def test_that_sentiment_api_response_is_negative
+    entry = @entryAutoMood
+    entry.content = "broke"
+    entry.mood = Entry.sentiment_response(entry.content)
+    entry.save
+    assert_equal "negative", entry.mood
+    assert entry.valid?
+  end
+
+  # Test works
+  def test_that_sentiment_is_neutral
+    entry = @entryAutoMood
+    entry.content = "water"
+    entry.mood = Entry.sentiment_response(entry.content)
+    entry.save
+    assert_equal "neutral", entry.mood
+    assert entry.valid?
+  end
+
+  # Test works
+  def test_one_current_user_has_entry_ownership
+    refute_equal @entry.user, @user_2
   end
 end
