@@ -7,7 +7,7 @@ class CreateEntries < ActiveRecord::Migration[5.2]
       t.integer :bg_picture_id
       t.integer :user_id
       t.string :mood
-      t.boolean :auto_mood 
+      t.boolean :auto_mood, default: true
 
       t.timestamps
     end

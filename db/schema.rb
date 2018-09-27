@@ -38,9 +38,9 @@ ActiveRecord::Schema.define(version: 2018_09_25_193627) do
 
   create_table "bg_pictures", force: :cascade do |t|
     t.string "mood"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image"
   end
 
   create_table "entries", force: :cascade do |t|
@@ -49,19 +49,19 @@ ActiveRecord::Schema.define(version: 2018_09_25_193627) do
     t.boolean "private", default: true
     t.integer "bg_picture_id"
     t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "mood"
     t.boolean "auto_mood", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "admin", default: false
   end
 
 end
