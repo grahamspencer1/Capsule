@@ -90,7 +90,6 @@ class EntryTest < ActiveSupport::TestCase
     entry = @entryAutoMood
     entry.mood = "neutral"
     entry.bg_picture = BgPicture.first
-
     entry.save
     assert entry.valid?
   end
@@ -119,7 +118,4 @@ class EntryTest < ActiveSupport::TestCase
   def test_one_current_user_has_entry_ownership
     refute_equal @entry.user, @user_2
   end
-
-
-
 end

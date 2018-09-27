@@ -37,8 +37,17 @@ class BgPicturesController < ApplicationController
   end
 
   def destroy
-    @entry = Entry.find(params[:id])
-    @entry.destroy
+    @entries = Entry.all
+    @picture = BgPicture.find(params[:id])
+
+    @entries.each do |entry|
+      if entry.bg_picture == @picture
+        entry.bg_picture = BgPicture.all.sample
+        entry.save
+      end
+    end
+
+    @picture.destroy
     flash[:alert] = "You have successfully deleted the picture."
     redirect_to bg_pictures_url
   end
