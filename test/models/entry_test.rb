@@ -67,6 +67,7 @@ class EntryTest < ActiveSupport::TestCase
     refute entry.valid?
   end
 
+  # Test works
   def test_that_sentiment_api_response_is_positive
     entry = @entryAutoMood
     entry.mood = Entry.sentiment_response(entry.content)
@@ -75,15 +76,16 @@ class EntryTest < ActiveSupport::TestCase
     assert entry.valid?
   end
 
+  # Test works
   def test_that_unsplash_response_is_saved_to_entry_mood_and_keyword
     entry = @entryAutoMood
     entry.mood = "positive"
     entry.bg_picture.image = Entry.unsplash_response(entry.content, entry.mood)
-
     entry.save
     assert entry.valid?
   end
 
+  # Test works
   def test_auto_mood_off_and_unsplash_response_not_called
     entry = @entryAutoMood
     entry.mood = "neutral"
@@ -93,16 +95,17 @@ class EntryTest < ActiveSupport::TestCase
     assert entry.valid?
   end
 
+  # Test works
   def test_that_sentiment_api_response_is_negative
     entry = @entryAutoMood
     entry.content = "broke"
     entry.mood = Entry.sentiment_response(entry.content)
-
     entry.save
     assert_equal "negative", entry.mood
     assert entry.valid?
   end
 
+  # Test works
   def test_that_sentiment_is_neutral
     entry = @entryAutoMood
     entry.content = "water"
@@ -112,6 +115,7 @@ class EntryTest < ActiveSupport::TestCase
     assert entry.valid?
   end
 
+  # Test works
   def test_one_current_user_has_entry_ownership
     refute_equal @entry.user, @user_2
   end
