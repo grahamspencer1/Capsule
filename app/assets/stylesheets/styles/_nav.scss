@@ -78,6 +78,11 @@
   height: 160px;
 }
 
+.logo-nav-mod {
+  place-self: center;
+  grid-column: 1 / span 2;
+}
+
 .entry-nav {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

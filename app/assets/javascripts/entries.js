@@ -49,22 +49,31 @@ document.addEventListener('DOMContentLoaded' , function(){
     });
   }
 
+  /*****************************************
+  *         Media Query javascript         *
+  ******************************************/
+  var queryBigScreen = window.matchMedia("(min-width: 1025px)");
+
   // footer height if nav exists
   var nav = document.querySelector(".main-nav");
   var footer = document.querySelector("footer");
-
-  var queryBigScreen = window.matchMedia("(min-width: 1025px)");
   function footerNavQuery(query) {
     if (nav && nav.classList.contains("visible")) {
       if (query.matches) {
-        console.log("yes");
         footer.classList.remove("nav-mod");
       } else {
-        console.log("no");
         footer.classList.add("nav-mod");
       }
     }
   }
   footerNavQuery(queryBigScreen);
-  queryBigScreen.addListener(footerNavQuery)
+  queryBigScreen.addListener(footerNavQuery);
+
+  // center logo if nav does not exists on big screen
+  var logo = document.querySelector(".logo-wrapper");
+  if (nav && nav.classList.contains("hidden")) {
+    logo.classList.add("logo-nav-mod");
+  } else {
+    logo.classList.remove("logo-nav-mod");
+  }
 });
