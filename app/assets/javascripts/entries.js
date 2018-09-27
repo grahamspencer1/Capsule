@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded' , function(){
       }
     });
   }
-
   // adding click event for closing (x) for the manual selection of bg images
   var span = document.querySelector('#picture_container');
   // check if span exists before adding click event
@@ -35,7 +34,6 @@ document.addEventListener('DOMContentLoaded' , function(){
       picture_container.style.display = "none";
     }
   }
-
   //This is the background picture list and store the selected picture temporarily
   var selectedPictures = document.querySelectorAll('.selected-picture');
   if (selectedPictures) {
