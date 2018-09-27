@@ -41,27 +41,15 @@ class EntriesController < ApplicationController
     @entry.auto_mood = params[:entry][:auto_mood]
     @entry.image.attach(params[:entry][:image])
 
-    if @entry.title == "" || @entry.content == ""
-      flash[:alert] = "The title and/or content can not be empity"
-      @pictures = BgPicture.all
-      return redirect_to "/entries/new"
-    end
-
     if @entry.auto_mood
       @entry.mood = Entry.sentiment_response(@entry.content)
       @bg_picture.image = Entry.unsplash_response(@entry.content, @entry.mood)
       @entry.bg_picture = @bg_picture
     else
       @entry.mood = "neutral"
-      if @entry.content.length >= 3
-        @bg_picture = BgPicture.find(params[:entry][:bg_picture_id])
-        @entry.bg_picture = @bg_picture
-      else
-        @pictures = BgPicture.all
-
-     end
-
-  end
+      @bg_picture = BgPicture.find(params[:entry][:bg_picture_id])
+      @entry.bg_picture = @bg_picture
+    end
 
 
     if @entry.save
@@ -105,12 +93,6 @@ class EntriesController < ApplicationController
     @entry.user = current_user
     @entry.private = params[:entry][:private]
     @entry.auto_mood = params[:entry][:auto_mood]
-
-    if @entry.title == "" || @entry.content == ""
-     flash[:alert] = "The title and/or content can not be empity"
-     @pictures = BgPicture.all
-     return redirect_to "/entries/#{@entry.id}"
-    end
 
     if @entry.auto_mood
       @entry.mood = Entry.sentiment_response(@entry.content)
