@@ -29,6 +29,12 @@
     <div class="field check-box-wrapper">
       <%= f.label 'Auto-Mood' %>
       <%= f.check_box :auto_mood, {checked: @entry.auto_mood}, 'true', 'false' %>
+
+      <%if !@entry.auto_mood%>
+        <div class="showlink">
+          <a id="selectwallpaper" class="btn-default">Select Wallpaper</a>
+        </div>
+      <%end%>
     </div>
 
     <div id="picture_preview" class="picture_preview">
