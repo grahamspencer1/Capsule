@@ -20,7 +20,7 @@ class Entry < ApplicationRecord
   def self.sentiment_response(content)
     query = {"text" => "#{content}"}
     headers = {
-      "X-Mashape-Key" => "#{ENV["SENTIMENT_KEY"]}",
+      "X-Mashape-Key" => "8eIBwzFTOimshDrU3jDsuUbshgMNp17OQCtjsnTF7wujgwy5Yf",
       "Accept" => "application/json"
     }
 
@@ -43,7 +43,7 @@ class Entry < ApplicationRecord
       custom_keyword = ["coffee", "code", "computer", "notebook", "photo"].sample
     end
 
-    response = HTTParty.get("https://api.unsplash.com/search/photos?client_id=#{ENV["UNSPLASH_KEY"]}&query=#{keyword}+#{custom_keyword}")
+    response = HTTParty.get("https://api.unsplash.com/search/photos?client_id=e94ba2672cfb2865cd80ff61f24b85c7354cd8d40f78b6969478d81e0ccde323&query=#{keyword}+#{custom_keyword}")
     response_json = JSON.parse(response.body)
 
     # if response_json["results"].length != 0
