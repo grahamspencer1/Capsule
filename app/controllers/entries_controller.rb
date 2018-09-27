@@ -43,7 +43,7 @@ class EntriesController < ApplicationController
 
     if @entry.auto_mood
       @entry.mood = Entry.sentiment_response(@entry.content)
-      @bg_picture.image = Entry.unsplash_response(@entry.content)
+      @bg_picture.image = Entry.unsplash_response(@entry.content, @entry.mood)
       @entry.bg_picture = @bg_picture
     else
       @entry.mood = "neutral"
@@ -79,6 +79,7 @@ class EntriesController < ApplicationController
   def update
     @entry = Entry.find(params[:id])
     @bg_picture = @entry.bg_picture
+    @bg_picture = BgPicture.new
     @pictures = BgPicture.all
 
     if @entry.user != current_user
@@ -93,9 +94,8 @@ class EntriesController < ApplicationController
     @entry.auto_mood = params[:entry][:auto_mood]
 
     if @entry.auto_mood
-      @bg_picture = BgPicture.new
       @entry.mood = Entry.sentiment_response(@entry.content)
-      @bg_picture.image = Entry.unsplash_response(@entry.content)
+      @bg_picture.image = Entry.unsplash_response(@entry.content, @entry.mood)
       @entry.bg_picture = @bg_picture
     else
       @entry.mood = "neutral"

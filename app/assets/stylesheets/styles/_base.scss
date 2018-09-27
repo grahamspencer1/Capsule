@@ -30,14 +30,26 @@ img {
 
 header {
   display: grid;
-  grid-template-columns: 1fr 2fr;
   grid-template-rows: 2fr;
   height: 100px;
-  @include linearGradient(bottom, $brand-trans, 0%, $brand-gray-trans, 80%);
+  grid-template-columns: minmax(auto, 400px) minmax(auto, 8000px) ;
+  place-self: center center;
+  max-width: 1200px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    @include linearGradient(bottom, $brand-trans, 0%, $brand-gray-trans, 80%);
+    width: 100%;
+    height: 100px;
+    left: 0;
+    top: 0;
+  }
 }
 
 main {
   margin: 2rem 0 0;
+
   .wrapper {
     margin: 2rem auto;
   }

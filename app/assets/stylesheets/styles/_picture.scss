@@ -9,6 +9,10 @@
     grid-gap: 4rem;
     margin: 4rem auto;
   }
+
+  @include desktop {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
 .picture {
@@ -27,6 +31,14 @@
 .picture-single {
   margin: 2rem auto;
   padding: 0 10px;
+
+  @include tablet {
+    max-width: 80vw;
+  }
+
+  @include desktop {
+    max-width: 500px;
+  }
 
   .form-wrapper {
     padding: 0;
