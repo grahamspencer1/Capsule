@@ -32,7 +32,7 @@ class BgPicturesController < ApplicationController
       flash[:alert] = "Successfully updated picture"
       redirect_to bg_pictures_url
     else
-      render bg_pictures_url
+      render :new
     end
   end
 
