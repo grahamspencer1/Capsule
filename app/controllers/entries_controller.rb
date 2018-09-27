@@ -134,8 +134,8 @@ class EntriesController < ApplicationController
     end
 
     if @entry.created_at < today_date
-      flash.now[:alert] = "Entries cannot be edited beyond the day they were made - Learn to appreciate how you felt this day!"
-      render :show
+      flash[:alert] = "Entries cannot be edited beyond the day they were made - Learn to appreciate how you felt this day!"
+      redirect_to entry_url(@entry)
     end
   end
 
