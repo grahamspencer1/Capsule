@@ -67,38 +67,10 @@ class EntryTest < ActiveSupport::TestCase
 
   def test_that_sentiment_api_response_is_positive
     entry = @entryAutoMood
-    query = {"text" => "#{entry.content}"}
-    headers = {
-      "X-Mashape-Key" => "#{ENV["SENTIMENT_KEY"]}",
-      "Accept" => "application/json"
-    }
-
-    response = HTTParty.post(
-      "https://twinword-sentiment-analysis.p.mashape.com/analyze/",
-      :query => query,
-      :headers => headers
-    )
-
-    assert_equal "positive", response["type"]
-  end
-
-  def test_that_sentiment_api_response_is_saved_to_entry_mood
-    entry = @entryAutoMood
-    query = {"text" => "#{entry.content}"}
-    headers = {
-      "X-Mashape-Key" => "#{ENV["SENTIMENT_KEY"]}",
-      "Accept" => "application/json"
-    }
-
-    response = HTTParty.post(
-      "https://twinword-sentiment-analysis.p.mashape.com/analyze/",
-      :query => query,
-      :headers => headers
-    )
+    entry.mood = Entry.sentiment_response(entry.content)
     entry.save
 
-    assert_equal "positive", response["type"]
-    assert_equal response["type"], entry.mood
+    assert_equal "positive", entry.mood
     assert entry.valid?
   end
 end

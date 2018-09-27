@@ -60,7 +60,7 @@ class EntriesController < ApplicationController
       flash[:alert] = "Time capsule created - After today, you won't be able to edit this entry!"
       redirect_to entries_url
     else
-      flash[:alert] = "Entry not saved! Please try again"
+      flash.now[:alert] = "Entry not saved! Please try again"
       render :new
     end
   end
@@ -117,7 +117,7 @@ class EntriesController < ApplicationController
       flash[:alert] = "Entry successfully updated"
       redirect_to entries_url(@entry)
     else
-      flash[:alert] = "Entry not saved! Please try again"
+      flash.now[:alert] = "Entry not saved! Please try again"
       render :edit
     end
   end
