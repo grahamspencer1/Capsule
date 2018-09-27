@@ -49,10 +49,6 @@
       }
     }
 
-    &-content {
-
-    }
-
     &-date {
       align-self: end;
       font-family: $font-normal;
@@ -72,8 +68,11 @@
 
   @include tablet {
     margin: 0 auto;
-    max-width: 70%;
-    max-width: 70vw;
+    max-width: 80vw;
+  }
+
+  @include desktop {
+    max-width: 960px;
   }
 
   .entry-title-wrapper {
@@ -94,6 +93,13 @@
   .entry-content {
     white-space: pre-line;
     line-height: 1.2em;
+  }
+
+  .entry-image {
+    padding: 2em 0;
+    img {
+      max-width: 80%;
+    }
   }
 }
 

@@ -55,7 +55,6 @@
   }
 }
 
-
 .btn-default {
   display: inline-block;
   border: none;
@@ -90,10 +89,11 @@
 .logo-wrapper {
   place-self: center;
   grid-column: 1 / span 2;
+  z-index: 1;
 
   @include desktop {
     grid-column: 1;
-    place-self: center end;
+    place-self: center;
   }
 
   .logo {
@@ -116,6 +116,7 @@
   grid-row-start: 2;
   text-align: center;
   padding: 1rem 0 0;
+  z-index: 1;
 }
 
 .error-block {
@@ -163,4 +164,10 @@
 
 .hidden {
   display: none;
+}
+
+.capsule-main {
+  @include desktop {
+    max-width: 960px;
+  }
 }
