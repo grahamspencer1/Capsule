@@ -162,3 +162,9 @@
     }
   }
 }
+
+.user-form {
+  @include desktop {
+    max-width: 360px;
+  }
+}
