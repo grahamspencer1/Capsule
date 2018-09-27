@@ -2,7 +2,7 @@
   <%= image_tag('capsule-key-logo.png', class: 'splash') %>
 </div>
 
-<section class="form-wrapper wrapper">
+<section class="form-wrapper wrapper user-form">
   <%= form_for :session, url: sessions_path, html: {class: 'form'} do |f| %>
     <div class="field">
       <%= f.label :email %>
