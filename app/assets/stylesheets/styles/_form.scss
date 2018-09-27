@@ -164,6 +164,10 @@
 }
 
 .user-form {
+  @include tablet {
+    max-width: 70%;
+  }
+
   @include desktop {
     max-width: 360px;
   }
