@@ -1,7 +1,9 @@
 <section class="single-entry-container current-entry">
   <section class="entry-nav">
-    <%= link_to entry_path(@previous_entry), class: "previous-entry entry-btn" do %>
-      <i class="fas fa-angle-left"></i>
+    <% if @previous_entry %>
+      <%= link_to entry_path(@previous_entry), class: "previous-entry entry-btn" do %>
+        <i class="fas fa-angle-left"></i>
+      <% end %>
     <% end %>
 
     <%= link_to edit_entry_path(@entry), class: "edit-btn entry-btn" do %>
@@ -14,8 +16,10 @@
       <span>Delete</span>
     <% end %>
 
-    <%= link_to entry_path(@next_entry), class: "next-entry entry-btn" do %>
-      <i class="fas fa-angle-right"></i>
+    <% if @next_entry %>
+      <%= link_to entry_path(@next_entry), class: "next-entry entry-btn" do %>
+        <i class="fas fa-angle-right"></i>
+      <% end %>
     <% end %>
   </section>
 
