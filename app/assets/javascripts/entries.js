@@ -26,6 +26,16 @@ document.addEventListener('DOMContentLoaded' , function(){
       }
     });
   }
+
+  //Button mauual
+  var buttonwallpaper = document.querySelector('#selectwallpaper');
+  if (buttonwallpaper) {
+    buttonwallpaper.addEventListener('click', function(e) {
+      e.preventDefault();
+      picture_container.style.display = "block";
+    });
+  }
+  
   // adding click event for closing (x) for the manual selection of bg images
   var span = document.querySelector('#picture_container');
   // check if span exists before adding click event
