@@ -6,17 +6,10 @@ class Entry < ApplicationRecord
 
   validates :title, length: { minimum: 3, maximum: 50 }, presence: true
   validates :content, length: { minimum: 3, maximum: 1500 }, presence: true
-  # validate :contentandtitle
-  #
-  # def contentandtitle
-  #  if entry.title = nil || entry.content = nil
-  #   flash[:alert] = "The title and/or content can nokt be empity"
-  #   render "entries/new"
-  #  end
-  # end
+  validate :check_image_file_type
 
-  def self.last_five_entry(current_user)
-    result = current_user.entries.order('id desc').limit(5)
+  def self.recent_entries(current_user)
+    result = current_user.entries.order('id desc').limit(10)
     return result
   end
 
@@ -36,19 +29,47 @@ class Entry < ApplicationRecord
       :query => query,
       :headers => headers
     )
-
-    return mood = response["type"]
+    return response["type"]
   end
 
-  def self.unsplash_response(keyword)
+  def self.unsplash_response(keyword, mood)
     keyword = keyword.split.max_by{|word| word.length}
-    response = HTTParty.get("https://api.unsplash.com/search/photos?client_id=#{ENV["UNSPLASH_KEY"]}&query=#{keyword}")
+
+    if mood == "positive"
+      custom_keyword = ["sun", "summer", "laughter", "calm", "bright"].sample
+    elsif mood == "negative"
+      custom_keyword = ["rain", "storm", "tears", "dark", "gloomy"].sample
+    else
+      custom_keyword = ["coffee", "code", "computer", "notebook", "photo"].sample
+    end
+
+    response = HTTParty.get("https://api.unsplash.com/search/photos?client_id=#{ENV["UNSPLASH_KEY"]}&query=#{keyword}+#{custom_keyword}")
     response_json = JSON.parse(response.body)
 
-    if response_json["results"].length != 0
+    # if response_json["results"].length != 0
       return response_json["results"].sample["urls"]["regular"]
-    else
-      return "jess-watters-684713-unsplash.jpg"
+    # else
+      # return "jess-watters-684713-unsplash.jpg"
+    # end
+  end
+
+  # def custom_keyword
+  #   if self.mood == "positive"
+  #     keyword = ["sun", "summer", "laughter", "calm", "bright"].sample
+  #   elsif self.mood == "negative"
+  #     keyword = ["rain", "storm", "tears", "dark", "gloomy"].sample
+  #   else
+  #     keyword = ["coffee", "code", "computer", "notebook", "photo"].sample
+  #   end
+  #   return keyword
+  # end
+
+  private
+
+  def check_image_file_type
+    if image.attached? && !image.blob.content_type.in?(%w(image/png image/jpeg image/gif))
+      image.purge
+      errors.add(:image, "Must be a JPEG, PNG, or GIF")
     end
   end
 end

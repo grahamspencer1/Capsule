@@ -3,8 +3,11 @@
 
   @include tablet {
     margin: 0 auto;
-    max-width: 70%;
-    max-width: 70vw;
+    max-width: 80vw;
+  }
+
+  @include desktop {
+    max-width: 960px;
   }
 
   .form {

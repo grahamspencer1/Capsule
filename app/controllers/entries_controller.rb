@@ -2,7 +2,7 @@ class EntriesController < ApplicationController
   before_action :require_login
 
   def index
-    @entries = Entry.last_five_entry(current_user)
+    @entries = Entry.recent_entries(current_user)
     if params[:from_date]
       date = params[:from_date][:date]
       @entries = Entry.entry_search(current_user, date)
@@ -15,7 +15,7 @@ class EntriesController < ApplicationController
 
     if @entry.private && @entry.user != current_user
       flash[:alert] = "You are not allowed to view this entry"
-      redirect_to root_path
+      redirect_to root_url
     end
 
     if @entries.length > 1
@@ -33,6 +33,7 @@ class EntriesController < ApplicationController
   def create
     @entry = Entry.new
     @bg_picture = BgPicture.new
+    @pictures = BgPicture.all
     @entry.title = params[:entry][:title]
     @entry.content = params[:entry][:content]
     @entry.user = current_user
@@ -47,14 +48,9 @@ class EntriesController < ApplicationController
     end
 
     if @entry.auto_mood
-      if @entry.content.length >= 3
-        @entry.mood = Entry.sentiment_response(@entry.content)
-        @bg_picture.image = Entry.unsplash_response(@entry.content)
-        @entry.bg_picture = @bg_picture
-      else
-      @entry.image.attach(params[:entry][:image])
-        @pictures = BgPicture.all
-      end
+      @entry.mood = Entry.sentiment_response(@entry.content)
+      @bg_picture.image = Entry.unsplash_response(@entry.content, @entry.mood)
+      @entry.bg_picture = @bg_picture
     else
       @entry.mood = "neutral"
       if @entry.content.length >= 3
@@ -74,10 +70,10 @@ class EntriesController < ApplicationController
         @bg_picture.save
       end
       flash[:alert] = "Time capsule created - After today, you won't be able to edit this entry!"
-      redirect_to "/entries"
+      redirect_to entries_url
     else
       flash[:alert] = "Entry not saved! Please try again"
-      render "entries/new"
+      render :new
     end
   end
 
@@ -86,25 +82,22 @@ class EntriesController < ApplicationController
 
     if @entry.user != current_user
       flash[:alert] = "You are not allowed to delete this entry"
-      return redirect_to root_path
+      return redirect_to root_url
     end
 
     @entry.destroy
-    redirect_to "/entries"
+    redirect_to entries_url
   end
 
   def update
     @entry = Entry.find(params[:id])
     @bg_picture = @entry.bg_picture
+    @bg_picture = BgPicture.new
+    @pictures = BgPicture.all
 
     if @entry.user != current_user
       flash[:alert] = "You are not allowed to edit this entry"
-      return redirect_to root_path
-    end
-
-    if @entry.user != current_user
-      flash[:alert] = "You are not allowed to edit this entry"
-      return redirect_to root_path
+      return redirect_to root_url
     end
 
     @entry.title = params[:entry][:title]
@@ -120,22 +113,13 @@ class EntriesController < ApplicationController
     end
 
     if @entry.auto_mood
-      if @entry.content.length >= 3
-        @bg_picture = BgPicture.new
-        @entry.mood = Entry.sentiment_response(@entry.content)
-        @bg_picture.image = Entry.unsplash_response(@entry.content)
-        @entry.bg_picture = @bg_picture
-      else
-        @pictures = BgPicture.all
-      end
+      @entry.mood = Entry.sentiment_response(@entry.content)
+      @bg_picture.image = Entry.unsplash_response(@entry.content, @entry.mood)
+      @entry.bg_picture = @bg_picture
     else
       @entry.mood = "neutral"
-      if @entry.content.length >= 3
-        @bg_picture = BgPicture.find(params[:entry][:bg_picture_id])
-        @entry.bg_picture = @bg_picture
-      else
-        @pictures = BgPicture.all
-      end
+      @bg_picture = BgPicture.find(params[:entry][:bg_picture_id])
+      @entry.bg_picture = @bg_picture
     end
 
     if params[:entry][:image] != nil
@@ -149,8 +133,9 @@ class EntriesController < ApplicationController
         @bg_picture.save
       end
       flash[:alert] = "Entry successfully updated"
-      redirect_to "/entries/#{@entry.id}"
+      redirect_to entries_url(@entry)
     else
+      flash[:alert] = "Entry not saved! Please try again"
       render :edit
     end
   end
@@ -164,7 +149,7 @@ class EntriesController < ApplicationController
 
     if @entry.user != current_user
       flash[:alert] = "You are not allowed to edit this entry"
-      return redirect_to root_path
+      return redirect_to root_url
     end
 
     if @entry.created_at < today_date
