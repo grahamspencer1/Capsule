@@ -9,7 +9,7 @@ class Entry < ApplicationRecord
   validate :check_image_file_type
 
   def self.recent_entries(current_user)
-    result = current_user.entries.order('id desc').limit(10)
+    result = current_user.entries.order('created_at desc').limit(10)
     return result
   end
 
