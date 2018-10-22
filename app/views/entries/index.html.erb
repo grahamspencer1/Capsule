@@ -11,8 +11,6 @@
     <% @entries.each do |entry| %>
       <%= link_to entry_path(entry) do %>
         <div class="entry-container">
-          <%= entry.mood %><br>
-          <%= entry.created_at %>
           <% if entry.bg_picture %>
             <div class="picture-container picture" style="background: url('<%= image_path(entry.bg_picture.image) %>')"></div>
           <% end %>
