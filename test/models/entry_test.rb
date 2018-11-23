@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'pry'
+# require 'pry'
 
 class EntryTest < ActiveSupport::TestCase
 
